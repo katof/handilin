@@ -26,8 +26,10 @@
       --line: rgba(35, 95, 43, 0.16);
       --shadow: 0 18px 38px rgba(0, 0, 0, 0.22);
       --shadow-soft: 0 10px 26px rgba(0, 0, 0, 0.12);
-      --radius: 10px;
+      --radius: 18px;
+      --radius-small: 12px;
       --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --footer-space: 150px;
     }
 
     *,
@@ -60,13 +62,14 @@
       display: block;
     }
 
-    a {
+    a,
+    button {
       color: inherit;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    button,
-    a {
-      -webkit-tap-highlight-color: transparent;
+    button {
+      font: inherit;
     }
 
     .skip-link {
@@ -91,9 +94,10 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(255, 255, 255, 0.97);
+      background: rgba(255, 255, 255, 0.96);
       border-bottom: 1px solid rgba(80, 175, 49, 0.18);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(18px);
     }
 
     .header-inner {
@@ -124,6 +128,7 @@
       height: 48px;
       flex: 0 0 auto;
       object-fit: contain;
+      border-radius: 14px;
     }
 
     .brand-kicker {
@@ -161,8 +166,8 @@
 
     .language-tabs {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7px;
       padding: 4px;
       border-radius: 999px;
       background: #f5f5f2;
@@ -175,8 +180,7 @@
       border-radius: 999px;
       background: transparent;
       color: var(--muted);
-      font: inherit;
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 800;
       cursor: pointer;
       transition: background 160ms ease, color 160ms ease, box-shadow 160ms ease;
@@ -191,7 +195,7 @@
     .page {
       width: min(100%, 920px);
       margin: 0 auto;
-      padding: 18px 16px calc(32px + var(--safe-bottom));
+      padding: 18px 16px calc(var(--footer-space) + var(--safe-bottom));
     }
 
     .hero {
@@ -200,7 +204,7 @@
       min-height: 390px;
       display: grid;
       align-content: center;
-      border-radius: var(--radius);
+      border-radius: 28px;
       background:
         linear-gradient(rgba(9, 14, 16, 0.38), rgba(9, 14, 16, 0.78)),
         url("https://itdd.au.dk/single-user-mode/wp-content/uploads/sites/103/2026/03/handilin.png") center / cover;
@@ -262,7 +266,7 @@
       z-index: 1;
       margin: 0 0 10px;
       color: #59bf3a;
-      font-size: clamp(3rem, 16vw, 6.5rem);
+      font-size: clamp(2.6rem, 13vw, 6.2rem);
       font-weight: 800;
       line-height: 0.98;
       letter-spacing: -0.07em;
@@ -400,7 +404,7 @@
       justify-content: space-between;
       gap: 12px;
       min-height: 48px;
-      border-radius: var(--radius);
+      border-radius: var(--radius-small);
       background: var(--green-soft);
       border: 1px solid rgba(69, 173, 43, 0.14);
       padding: 10px 12px;
@@ -437,6 +441,12 @@
       text-align: left;
       text-decoration: none;
       box-shadow: var(--shadow-soft);
+      cursor: pointer;
+    }
+
+    .link-button.secondary {
+      background: #ffffff;
+      color: var(--green-dark);
     }
 
     .link-button strong,
@@ -456,6 +466,10 @@
       font-weight: 700;
     }
 
+    .link-button.secondary small {
+      color: var(--muted);
+    }
+
     .arrow {
       display: grid;
       width: 34px;
@@ -467,6 +481,38 @@
       color: var(--green-site);
       font-size: 1.1rem;
       font-weight: 800;
+    }
+
+    .link-button.secondary .arrow {
+      background: var(--green-site);
+      color: #fff;
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 58px;
+      padding: 12px 14px;
+      border-radius: var(--radius-small);
+      background: var(--green-soft);
+      border: 1px solid rgba(69, 173, 43, 0.16);
+      color: var(--green-dark);
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .contact-link span {
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 700;
     }
 
     .surprise-card {
@@ -512,17 +558,30 @@
       font-weight: 700;
     }
 
-    .phrase-grid {
+    .phrase-grid,
+    .fo-advice {
       position: relative;
       z-index: 1;
       display: grid;
       gap: 10px;
     }
 
+    .fo-advice {
+      display: none;
+    }
+
+    html.lang-fo .phrase-grid {
+      display: none;
+    }
+
+    html.lang-fo .fo-advice {
+      display: grid;
+    }
+
     .phrase-item {
       display: grid;
       gap: 3px;
-      border-radius: var(--radius);
+      border-radius: var(--radius-small);
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.14);
       padding: 12px;
@@ -540,7 +599,65 @@
       font-weight: 700;
     }
 
+    .page-footer {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 45;
+      padding: 10px 14px calc(10px + var(--safe-bottom));
+      background: rgba(255, 255, 255, 0.96);
+      border-top: 1px solid rgba(69, 173, 43, 0.18);
+      box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.12);
+      backdrop-filter: blur(18px);
+    }
 
+    .page-footer-inner {
+      width: min(100%, 920px);
+      margin: 0 auto;
+      display: grid;
+      gap: 8px;
+    }
+
+    .footer-text {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .footer-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .footer-link {
+      min-height: 44px;
+      border: 0;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      padding: 8px 10px;
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 800;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .footer-link.primary {
+      background: var(--green-site);
+      color: white;
+      box-shadow: 0 8px 18px rgba(69, 173, 43, 0.26);
+    }
+
+    .footer-link.secondary {
+      background: var(--green-soft);
+      color: var(--green-dark);
+      border: 1px solid rgba(69, 173, 43, 0.16);
+    }
 
     :focus-visible {
       outline: 3px solid rgba(80, 175, 49, 0.48);
@@ -559,18 +676,44 @@
         align-items: start;
       }
 
-      .phrase-grid {
+      .phrase-grid,
+      .fo-advice {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .contact-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
 
     @media (max-width: 520px) {
+      :root {
+        --footer-space: 190px;
+      }
+
       .hero {
         min-height: 360px;
       }
 
       .section-head h2 {
         text-shadow: 0 2px 0 rgba(0, 0, 0, 0.28);
+      }
+
+      .language-tabs {
+        gap: 4px;
+      }
+
+      .language-tabs button {
+        min-height: 38px;
+        font-size: 0.72rem;
+      }
+
+      .footer-actions {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-actions .footer-link:last-child {
+        grid-column: 1 / -1;
       }
     }
 
@@ -598,7 +741,7 @@
   <header class="site-header" aria-label="Sidehoved">
     <div class="header-inner">
       <div class="brand-row">
-        <a class="brand" href="https://ahandil.fo/" target="_blank" rel="noopener noreferrer" aria-label="Á handil hjemmeside">
+        <a class="brand" href="#help" aria-label="Á handil information">
           <img class="brand-logo" src="https://ahandil.fo/wp-content/uploads/2016/11/a-logo-1.png" alt="Á handil logo" width="48" height="48">
           <span>
             <span class="brand-kicker" data-i18n="brandSmall">Underside</span>
@@ -614,6 +757,7 @@
         <button type="button" role="tab" aria-selected="false" data-lang="en">EN</button>
         <button type="button" role="tab" aria-selected="false" data-lang="fr">FR</button>
         <button type="button" role="tab" aria-selected="false" data-lang="fo">FO</button>
+        <button type="button" role="tab" aria-selected="false" data-lang="de">DE</button>
       </nav>
     </div>
   </header>
@@ -643,7 +787,7 @@
 
       <a class="quick-action" href="#help">
         <strong data-i18n="quickHelpTitle">Hjælp</strong>
-        <span data-i18n="quickHelpText">Gå til hjemmesiden</span>
+        <span data-i18n="quickHelpText">Kontakt og hjemmeside</span>
       </a>
     </nav>
 
@@ -723,7 +867,12 @@
           <h2 id="offers-title" data-i18n="offersTitle">Se ugens tilbud</h2>
           <p data-i18n="offersText">Du kan også åbne butikkens tilbudsblad. Tilbudsbladet er på færøsk.</p>
 
-          <a id="offersLink" class="link-button" href="https://ahandil.fo/wp-content/uploads/2026/04/A26_V18_Netblad.pdf" target="_blank" rel="noopener noreferrer">
+          <a
+            class="link-button"
+            href="https://ahandil.fo/wp-content/uploads/2026/04/A26_V18_Netblad.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <span>
               <strong data-i18n="offersLinkTitle">Åbn tilbudsblad</strong>
               <small data-i18n="offersLinkSmall">PDF på færøsk</small>
@@ -741,7 +890,24 @@
           <h2 id="help-title" data-i18n="helpTitle">Spørg os gerne</h2>
           <p data-i18n="helpText">Hvis du leder efter noget bestemt eller vil vide mere om butikken, hjælper vi gerne.</p>
 
-          <a class="link-button" href="https://ahandil.fo/" target="_blank" rel="noopener noreferrer">
+          <div class="contact-grid">
+            <a class="contact-link" href="tel:+298000000">
+              <strong data-i18n="phoneTitle">Ring til butikken</strong>
+              <span>+298 00 00 00</span>
+            </a>
+
+            <a class="contact-link" href="mailto:bestyrari@ahandil.fo">
+              <strong data-i18n="emailTitle">Skriv til bestyreren</strong>
+              <span>bestyrari@ahandil.fo</span>
+            </a>
+          </div>
+
+          <a
+            class="link-button"
+            href="https://ahandil.fo/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <span>
               <strong data-i18n="siteLinkTitle">Til Á handils hjemmeside</strong>
               <small data-i18n="siteLinkSmall">Mere information om butikken</small>
@@ -779,39 +945,54 @@
             <span data-i18n="phraseFourHelp">Tak skal du have</span>
           </div>
         </div>
+
+        <div class="fo-advice" aria-label="Góð ráð til kundar">
+          <div class="phrase-item">
+            <strong data-i18n="foAdviceOneTitle">Spyr starvsfólkini</strong>
+            <span data-i18n="foAdviceOneText">Um tú ikki finnur tað, tú leitar eftir, hjálpa vit fegin.</span>
+          </div>
+
+          <div class="phrase-item">
+            <strong data-i18n="foAdviceTwoTitle">Ring ella skriva</strong>
+            <span data-i18n="foAdviceTwoText">Tú kanst seta teg í samband við handilin, um tú hevur spurningar.</span>
+          </div>
+        </div>
       </article>
     </section>
   </main>
 
-<footer class="page-footer" aria-label="Genveje">
-  <div class="page-footer-inner">
-    <p class="footer-text" data-i18n="footerText">Hurtige genveje</p>
+  <footer class="page-footer" aria-label="Genveje">
+    <div class="page-footer-inner">
+      <p class="footer-text" data-i18n="footerText">Hurtige genveje</p>
 
-    <div class="footer-actions">
-      <a
-        class="footer-link secondary"
-        href="#hours"
-        data-i18n="bottomHours"
-      >
-        Åbningstider
-      </a>
+      <div class="footer-actions">
+        <a class="footer-link secondary" href="#hours" data-i18n="bottomHours">Åbningstider</a>
 
-      <a
-        class="footer-link primary"
-        href="https://ahandil.fo/wp-content/uploads/2026/04/A26_V18_Netblad.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-i18n="bottomOffers"
-      >
-        Se tilbud
-      </a>
+        <a
+          class="footer-link primary"
+          href="https://ahandil.fo/wp-content/uploads/2026/04/A26_V18_Netblad.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-i18n="bottomOffers"
+        >
+          Se tilbud
+        </a>
+
+        <a
+          class="footer-link secondary"
+          href="https://ahandil.fo/"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-i18n="bottomWebsite"
+        >
+          Hjemmeside
+        </a>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
   <script>
     (() => {
-      const OFFERS_PDF = "https://ahandil.fo/wp-content/uploads/2026/04/A26_V18_Netblad.pdf";
       const DEFAULT_LANG = "da";
       const STORAGE_KEY = "ahandilPreferredLanguage";
 
@@ -833,7 +1014,7 @@
           quickLookTitle: "Find butikken",
           quickLookText: "Se facaden udefra",
           quickHelpTitle: "Hjælp",
-          quickHelpText: "Gå til hjemmesiden",
+          quickHelpText: "Kontakt og hjemmeside",
 
           facadeTitle: "Sådan ser Á handil ud",
           facadeSub: "Butikken kan kendes på den mørke facade og det grønne Á.",
@@ -866,6 +1047,8 @@
           helpTag: "Har du brug for hjælp?",
           helpTitle: "Spørg os gerne",
           helpText: "Hvis du leder efter noget bestemt eller vil vide mere om butikken, hjælper vi gerne.",
+          phoneTitle: "Ring til butikken",
+          emailTitle: "Skriv til bestyreren",
           siteLinkTitle: "Til Á handils hjemmeside",
           siteLinkSmall: "Mere information om butikken",
 
@@ -881,9 +1064,15 @@
           phraseFourFo: "Takk fyri",
           phraseFourHelp: "Tak skal du have",
 
+          foAdviceOneTitle: "Spørg personalet",
+          foAdviceOneText: "Hvis du ikke finder det, du leder efter, hjælper vi gerne.",
+          foAdviceTwoTitle: "Ring eller skriv",
+          foAdviceTwoText: "Du kan kontakte butikken, hvis du har spørgsmål.",
+
           footerText: "Hurtige genveje",
           bottomHours: "Åbningstider",
-          bottomOffers: "Se tilbud"
+          bottomOffers: "Se tilbud",
+          bottomWebsite: "Hjemmeside"
         },
 
         en: {
@@ -903,7 +1092,7 @@
           quickLookTitle: "Find the shop",
           quickLookText: "See the facade outside",
           quickHelpTitle: "Help",
-          quickHelpText: "Go to the website",
+          quickHelpText: "Contact and website",
 
           facadeTitle: "This is what Á handil looks like",
           facadeSub: "The shop can be recognised by its dark facade and the green Á.",
@@ -936,6 +1125,8 @@
           helpTag: "Need help?",
           helpTitle: "Feel free to ask",
           helpText: "If you are looking for something specific or want to know more about the shop, we are happy to help.",
+          phoneTitle: "Call the shop",
+          emailTitle: "Email the manager",
           siteLinkTitle: "Go to Á handil website",
           siteLinkSmall: "More information about the shop",
 
@@ -951,9 +1142,15 @@
           phraseFourFo: "Takk fyri",
           phraseFourHelp: "Thank you",
 
+          foAdviceOneTitle: "Ask the staff",
+          foAdviceOneText: "If you cannot find what you are looking for, we are happy to help.",
+          foAdviceTwoTitle: "Call or email",
+          foAdviceTwoText: "You can contact the shop if you have questions.",
+
           footerText: "Quick links",
           bottomHours: "Opening hours",
-          bottomOffers: "See offers"
+          bottomOffers: "See offers",
+          bottomWebsite: "Website"
         },
 
         fr: {
@@ -973,7 +1170,7 @@
           quickLookTitle: "Trouver le magasin",
           quickLookText: "Voir la façade extérieure",
           quickHelpTitle: "Aide",
-          quickHelpText: "Aller au site web",
+          quickHelpText: "Contact et site web",
 
           facadeTitle: "Voici à quoi ressemble Á handil",
           facadeSub: "Le magasin se reconnaît à sa façade sombre et au Á vert.",
@@ -1006,6 +1203,8 @@
           helpTag: "Besoin d’aide ?",
           helpTitle: "N’hésitez pas à demander",
           helpText: "Si vous cherchez quelque chose de précis ou si vous voulez en savoir plus sur le magasin, nous serons heureux de vous aider.",
+          phoneTitle: "Appeler le magasin",
+          emailTitle: "Écrire au responsable",
           siteLinkTitle: "Aller au site web de Á handil",
           siteLinkSmall: "Plus d’informations sur le magasin",
 
@@ -1021,20 +1220,26 @@
           phraseFourFo: "Takk fyri",
           phraseFourHelp: "Merci",
 
+          foAdviceOneTitle: "Demandez au personnel",
+          foAdviceOneText: "Si vous ne trouvez pas ce que vous cherchez, nous serons heureux de vous aider.",
+          foAdviceTwoTitle: "Appelez ou écrivez",
+          foAdviceTwoText: "Vous pouvez contacter le magasin si vous avez des questions.",
+
           footerText: "Liens rapides",
           bottomHours: "Horaires",
-          bottomOffers: "Voir offres"
+          bottomOffers: "Voir offres",
+          bottomWebsite: "Site web"
         },
 
         fo: {
-          pageTitle: "Nýggj/ur her? | Á handil í Vestmanna",
+          pageTitle: "Hevur tú verið her fyrr? | Á handil í Vestmanna",
           skipLink: "Far til innihald",
           statusRight: "Vestmanna",
           brandSmall: "Undirsíða",
           brandStrong: "Á handil í Vestmanna",
           heroEyebrow: "📍 Vælkomin í Á handil",
-          heroTitle: "Nýggj/ur her?",
-          heroText: "Her finnur tú upplatingartíðir, eitt lítið innlit í Á handil og eitt sindur av hjálp, um tú ert í iva um okkurt.",
+          heroTitle: "Hevur tú verið her fyrr?",
+          heroText: "Her finnur tú upplatingartíðir, eitt lítið innlit í Á handil og samband, um tú hevur spurningar.",
 
           quickHoursTitle: "Upplatingartíðir",
           quickHoursText: "Sí nær handilin er opin",
@@ -1042,8 +1247,8 @@
           quickOffersText: "Lat vikunnar blað upp",
           quickLookTitle: "Finn handilin",
           quickLookText: "Sí fasaduna uttanífrá",
-          quickHelpTitle: "Hjálp",
-          quickHelpText: "Far til heimasíðuna",
+          quickHelpTitle: "Samband",
+          quickHelpText: "Telefon, teldupostur og heimasíða",
 
           facadeTitle: "Soleiðis sær Á handil út",
           facadeSub: "Handilin kennist aftur á myrku fasaduni og tí grøna Á-num.",
@@ -1061,7 +1266,7 @@
           closedLabel: "Stongt",
           hoursNote: "Kanna fegin heimasíðuna ella uppslagið við handilin halgidagar.",
 
-          welcomeTitle: "Eitt lítið fyrsta innlit",
+          welcomeTitle: "Eitt lítið innlit",
           welcomeText: "Á handil er tann lokali handilin í Vestmanna. Her kanst tú keypa, spyrja og fáa hjálp, um tú ert í iva um okkurt.",
           localTag: "Lokalur handil",
           localTitle: "Partur av gerandisdegnum í bygdini",
@@ -1069,19 +1274,21 @@
 
           offersTag: "Tilboð",
           offersTitle: "Sí vikunnar tilboð",
-          offersText: "Tú kanst eisini lata upp tilboðsbløðini hjá handlinum. Tilboðsblaðið er á føroyskum.",
+          offersText: "Tú kanst eisini lata upp tilboðsblaðið hjá handlinum. Tilboðsblaðið er á føroyskum.",
           offersLinkTitle: "Lat tilboðsblaðið upp",
           offersLinkSmall: "PDF á føroyskum",
 
-          helpTag: "Hevur tú tørv á hjálp?",
+          helpTag: "Hevur tú spurningar?",
           helpTitle: "Spyr okkum endiliga",
           helpText: "Um tú leitar eftir nøkrum ávísum ella vilt vita meira um handilin, hjálpa vit fegin.",
+          phoneTitle: "Ring til handilin",
+          emailTitle: "Skriva til bestýraran",
           siteLinkTitle: "Til heimasíðuna hjá Á handli",
           siteLinkSmall: "Meira kunning um handilin",
 
-          phrasesEyebrow: "💚 Ein lítil hjálp í handlinum",
-          phrasesTitle: "Sig tað á føroyskum",
-          phrasesIntro: "Ein lítil orðalisti til nýggj viðskiftafólk, so tað kennist lættari at spyrja um hjálp.",
+          phrasesEyebrow: "💚 Góð ráð",
+          phrasesTitle: "Tá tú vitjar",
+          phrasesIntro: "Spyr endiliga starvsfólkini, um tú ikki finnur tað, tú leitar eftir.",
           phraseOneFo: "Góðan dag",
           phraseOneHelp: "Heilsan",
           phraseTwoFo: "Hvar finni eg ...?",
@@ -1091,9 +1298,93 @@
           phraseFourFo: "Takk fyri",
           phraseFourHelp: "Takking",
 
+          foAdviceOneTitle: "Spyr starvsfólkini",
+          foAdviceOneText: "Um tú ikki finnur tað, tú leitar eftir, hjálpa vit fegin.",
+          foAdviceTwoTitle: "Ring ella skriva",
+          foAdviceTwoText: "Tú kanst seta teg í samband við handilin, um tú hevur spurningar.",
+
           footerText: "Skjótir leinkir",
           bottomHours: "Upplatingartíðir",
-          bottomOffers: "Sí tilboð"
+          bottomOffers: "Sí tilboð",
+          bottomWebsite: "Heimasíða"
+        },
+
+        de: {
+          pageTitle: "Neu hier? | Á handil in Vestmanna",
+          skipLink: "Zum Inhalt springen",
+          statusRight: "Vestmanna",
+          brandSmall: "Unterseite",
+          brandStrong: "Á handil in Vestmanna",
+          heroEyebrow: "📍 Willkommen bei Á handil",
+          heroTitle: "Neu hier?",
+          heroText: "Hier findest du Öffnungszeiten, einen kurzen Einblick in Á handil und Hilfe, falls du unsicher bist.",
+
+          quickHoursTitle: "Öffnungszeiten",
+          quickHoursText: "Sieh, wann geöffnet ist",
+          quickOffersTitle: "Angebote",
+          quickOffersText: "Wochenangebote öffnen",
+          quickLookTitle: "Laden finden",
+          quickLookText: "Fassade von außen ansehen",
+          quickHelpTitle: "Hilfe",
+          quickHelpText: "Kontakt und Website",
+
+          facadeTitle: "So sieht Á handil aus",
+          facadeSub: "Du erkennst den Laden an der dunklen Fassade und dem grünen Á.",
+          facadeTag: "Erkennungszeichen",
+          facadeCardTitle: "Á handil von außen",
+          facadeText: "Das Bild zeigt, wie der Laden aussieht, wenn du ankommst.",
+
+          hoursTitle: "Öffnungszeiten",
+          hoursSub: "Praktische Informationen",
+          practicalTag: "Praktische Infos",
+          hoursOpenTitle: "Der Laden ist geöffnet",
+          weekdayLabel: "Montag–Freitag",
+          saturdayLabel: "Samstag",
+          sundayLabel: "Sonntag",
+          closedLabel: "Geschlossen",
+          hoursNote: "Bitte prüfe an Feiertagen die Website oder den Aushang beim Laden.",
+
+          welcomeTitle: "Ein erster kleiner Einblick",
+          welcomeText: "Á handil ist der lokale Laden in Vestmanna. Hier kannst du einkaufen, Fragen stellen und Hilfe bekommen, wenn du unsicher bist.",
+          localTag: "Lokaler Laden",
+          localTitle: "Ein Teil des Alltags im Dorf",
+          localText: "Á handil ist nicht nur ein Ort zum Einkaufen. Es ist auch ein lokaler Laden, wo Menschen oft kurz stehen bleiben, einander grüßen und ein paar Worte wechseln.",
+
+          offersTag: "Angebote",
+          offersTitle: "Angebote der Woche ansehen",
+          offersText: "Du kannst auch das Angebotsblatt des Ladens öffnen. Das Angebotsblatt ist auf Färöisch.",
+          offersLinkTitle: "Angebotsblatt öffnen",
+          offersLinkSmall: "PDF auf Färöisch",
+
+          helpTag: "Brauchst du Hilfe?",
+          helpTitle: "Frag uns gerne",
+          helpText: "Wenn du etwas Bestimmtes suchst oder mehr über den Laden wissen möchtest, helfen wir gerne.",
+          phoneTitle: "Den Laden anrufen",
+          emailTitle: "Der Leitung schreiben",
+          siteLinkTitle: "Zur Website von Á handil",
+          siteLinkSmall: "Weitere Informationen über den Laden",
+
+          phrasesEyebrow: "💚 Eine kleine Hilfe im Laden",
+          phrasesTitle: "Sag es auf Färöisch",
+          phrasesIntro: "Eine kleine Wortliste für neue Kundinnen und Kunden, damit es leichter ist, nach Hilfe zu fragen.",
+          phraseOneFo: "Góðan dag",
+          phraseOneHelp: "Hallo / guten Tag",
+          phraseTwoFo: "Hvar finni eg ...?",
+          phraseTwoHelp: "Wo finde ich ...?",
+          phraseThreeFo: "Kann eg fáa hjálp?",
+          phraseThreeHelp: "Kann ich Hilfe bekommen?",
+          phraseFourFo: "Takk fyri",
+          phraseFourHelp: "Danke",
+
+          foAdviceOneTitle: "Frag das Personal",
+          foAdviceOneText: "Wenn du nicht findest, wonach du suchst, helfen wir gerne.",
+          foAdviceTwoTitle: "Anrufen oder schreiben",
+          foAdviceTwoText: "Du kannst den Laden kontaktieren, wenn du Fragen hast.",
+
+          footerText: "Schnellzugriffe",
+          bottomHours: "Öffnungszeiten",
+          bottomOffers: "Angebote",
+          bottomWebsite: "Website"
         }
       };
 
@@ -1107,14 +1398,11 @@
           ? browserLanguage
           : DEFAULT_LANG;
 
-      document.querySelectorAll("#offersLink, #bottomOffersLink").forEach((link) => {
-        link.href = OFFERS_PDF;
-      });
-
       function applyTranslations(lang) {
         const dictionary = translations[lang] || translations[DEFAULT_LANG];
 
         document.documentElement.lang = lang;
+        document.documentElement.classList.toggle("lang-fo", lang === "fo");
         document.title = dictionary.pageTitle;
         localStorage.setItem(STORAGE_KEY, lang);
 
@@ -1151,8 +1439,6 @@
           scrollToSection(targetId);
         });
       });
-
-
 
       document.querySelectorAll("[data-lang]").forEach((button) => {
         button.addEventListener("click", () => applyTranslations(button.dataset.lang));
