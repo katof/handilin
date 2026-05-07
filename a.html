@@ -1,682 +1,1010 @@
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#50af31">
+  <meta name="description" content="Velkomstside for Á handil í Vestmanna med åbningstider, tilbud og praktisk information.">
 
-<style>
-#ahPrototypeSimpleP7 {
-  --bg: #f4eee4;
-  --card: #fffdfa;
-  --green: #50af31;
-  --green-dark: #3f8c27;
-  --green-soft: #eef7ea;
-  --text: #2f3133;
-  --muted: #6c7176;
-  --line: rgba(0,0,0,0.08);
-  --shadow: 0 12px 28px rgba(0,0,0,0.08);
-  --radius-xl: 32px;
-  --radius-lg: 24px;
+  <title>Ny her? | Á handil í Vestmanna</title>
 
-  font-family: "Open Sans", Arial, sans-serif;
-  color: var(--text);
-  background: linear-gradient(180deg, #fbf7ef 0%, #f4edde 100%);
-  min-height: 100vh;
-  width: 100%;
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-#ahPrototypeSimpleP7,
-#ahPrototypeSimpleP7 * {
-  box-sizing: border-box;
-}
+  <style>
+    :root {
+      --bg: #f7f1e8;
+      --surface: #fffdfa;
+      --surface-soft: #fbf6ee;
+      --green: #50af31;
+      --green-dark: #347b20;
+      --green-soft: #eef8ea;
+      --text: #272a2d;
+      --muted: #646b70;
+      --line: rgba(39, 42, 45, 0.1);
+      --shadow-sm: 0 8px 22px rgba(39, 42, 45, 0.08);
+      --shadow-md: 0 18px 42px rgba(39, 42, 45, 0.12);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
 
-#ahPrototypeSimpleP7 .ah-container {
-  width: 100%;
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 22px 16px 60px;
-}
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
 
-#ahPrototypeSimpleP7 .ah-topbar {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(251,247,239,0.9);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  margin: -22px -16px 24px;
-  padding: 18px 16px 16px;
-}
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+    }
 
-#ahPrototypeSimpleP7 .ah-top-inner {
-  max-width: 860px;
-  margin: 0 auto;
-}
+    body {
+      margin: 0;
+      min-width: 320px;
+      font-family: "Open Sans", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(80, 175, 49, 0.12), transparent 34rem),
+        linear-gradient(180deg, #fbf7ef 0%, var(--bg) 42%, #f3eadc 100%);
+      line-height: 1.5;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
 
-#ahPrototypeSimpleP7 .ah-brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-#ahPrototypeSimpleP7 .ah-logo {
-  width: 58px;
-  height: 58px;
-  border-radius: 18px;
-  background: #fff;
-  padding: 10px;
-  box-shadow: var(--shadow);
-  flex: 0 0 auto;
-}
+    a {
+      color: inherit;
+    }
 
-#ahPrototypeSimpleP7 .ah-brand small {
-  display: block;
-  margin-bottom: 4px;
-  color: var(--green-dark);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 11px;
-  font-weight: 800;
-}
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
 
-#ahPrototypeSimpleP7 .ah-brand strong {
-  display: block;
-  line-height: 1.15;
-  font-size: 1.15rem;
-}
+    .page {
+      width: min(100%, 760px);
+      margin: 0 auto;
+      padding: 0 16px calc(32px + var(--safe-bottom));
+    }
 
-#ahPrototypeSimpleP7 .ah-lang-switch {
-  display: flex;
-  gap: 8px;
-  margin-top: 16px;
-  flex-wrap: wrap;
-}
+    .skip-link {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 100;
+      transform: translateY(-140%);
+      border-radius: 999px;
+      background: var(--text);
+      color: #fff;
+      padding: 10px 14px;
+      font-weight: 800;
+      text-decoration: none;
+    }
 
-#ahPrototypeSimpleP7 .ah-lang-switch button {
-  padding: 10px 14px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.95);
-  color: var(--text);
-  font-size: 13px;
-  font-weight: 800;
-  border: 1px solid rgba(0,0,0,0.06);
-  cursor: pointer;
-  transition: 0.2s ease;
-}
+    .skip-link:focus {
+      transform: translateY(0);
+    }
 
-#ahPrototypeSimpleP7 .ah-lang-switch button:hover {
-  transform: translateY(-1px);
-}
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      margin: 0 -16px;
+      padding: max(12px, env(safe-area-inset-top)) 16px 12px;
+      background: rgba(251, 247, 239, 0.9);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(39, 42, 45, 0.06);
+    }
 
-#ahPrototypeSimpleP7 .ah-lang-switch button.active {
-  background: #eef7ea;
-  color: var(--green-dark);
-}
+    .header-inner {
+      width: min(100%, 760px);
+      margin: 0 auto;
+      display: grid;
+      gap: 12px;
+    }
 
-#ahPrototypeSimpleP7 .ah-hero-card {
-  background: linear-gradient(135deg, rgba(80,175,49,0.98), rgba(55,124,36,0.96));
-  color: #fff;
-  border-radius: var(--radius-xl);
-  padding: 30px 24px;
-  box-shadow: 0 20px 40px rgba(50,90,40,0.22);
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 22px;
-}
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
 
-#ahPrototypeSimpleP7 .ah-hero-card::after {
-  content: "";
-  position: absolute;
-  right: -40px;
-  top: -40px;
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.12);
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+      text-decoration: none;
+    }
 
-#ahPrototypeSimpleP7 .ah-eyebrow,
-#ahPrototypeSimpleP7 .ah-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border-radius: 999px;
-  font-weight: 700;
-}
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      flex: 0 0 auto;
+      border-radius: 16px;
+      background: #fff;
+      padding: 8px;
+      box-shadow: var(--shadow-sm);
+    }
 
-#ahPrototypeSimpleP7 .ah-eyebrow {
-  background: rgba(255,255,255,0.16);
-  padding: 9px 14px;
-  font-size: 12px;
-  margin-bottom: 16px;
-  position: relative;
-  z-index: 1;
-}
+    .brand-kicker {
+      display: block;
+      color: var(--green-dark);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      line-height: 1.15;
+      text-transform: uppercase;
+    }
 
-#ahPrototypeSimpleP7 .ah-hero-card h1 {
-  margin: 0 0 12px;
-  line-height: 1.05;
-  font-size: clamp(2rem, 5vw, 3.4rem);
-  position: relative;
-  z-index: 1;
-}
+    .brand-title {
+      display: block;
+      margin-top: 2px;
+      overflow: hidden;
+      font-size: clamp(0.98rem, 4vw, 1.1rem);
+      font-weight: 800;
+      line-height: 1.18;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 
-#ahPrototypeSimpleP7 .ah-hero-card p {
-  margin: 0;
-  color: rgba(255,255,255,0.92);
-  font-size: 1rem;
-  line-height: 1.6;
-  max-width: 620px;
-  position: relative;
-  z-index: 1;
-}
+    .top-pill {
+      flex: 0 0 auto;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      padding: 8px 10px;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
 
-#ahPrototypeSimpleP7 .ah-grid {
-  display: grid;
-  gap: 20px;
-}
+    .language-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      padding: 4px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(39, 42, 45, 0.06);
+    }
 
-#ahPrototypeSimpleP7 .ah-card {
-  background: var(--card);
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(0,0,0,0.06);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-}
+    .language-tabs button {
+      min-height: 40px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+    }
 
-#ahPrototypeSimpleP7 .ah-image-full {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  display: block;
-  background: #e9e2d7;
-}
+    .language-tabs button[aria-selected="true"] {
+      background: #fff;
+      color: var(--green-dark);
+      box-shadow: var(--shadow-sm);
+    }
 
-#ahPrototypeSimpleP7 .ah-card-body {
-  padding: 22px;
-}
+    main {
+      padding-top: 18px;
+    }
 
-#ahPrototypeSimpleP7 .ah-tag {
-  background: var(--green-soft);
-  color: var(--green-dark);
-  padding: 7px 12px;
-  font-size: 12px;
-  margin-bottom: 14px;
-}
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(135deg, rgba(80, 175, 49, 0.98), rgba(50, 123, 32, 0.98)),
+        var(--green);
+      color: #fff;
+      padding: clamp(24px, 7vw, 42px) 22px;
+      box-shadow: 0 20px 46px rgba(52, 123, 32, 0.28);
+    }
 
-#ahPrototypeSimpleP7 .ah-card h2,
-#ahPrototypeSimpleP7 .ah-card h3 {
-  margin: 0 0 10px;
-  font-size: 1.2rem;
-  line-height: 1.2;
-}
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.13);
+      pointer-events: none;
+    }
 
-#ahPrototypeSimpleP7 .ah-card p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.97rem;
-  line-height: 1.7;
-}
+    .hero::before {
+      width: 140px;
+      height: 140px;
+      right: -48px;
+      top: -42px;
+    }
 
-#ahPrototypeSimpleP7 .ah-hours-list {
-  display: grid;
-  gap: 10px;
-  margin-top: 18px;
-}
+    .hero::after {
+      width: 86px;
+      height: 86px;
+      right: 24px;
+      bottom: -34px;
+    }
 
-#ahPrototypeSimpleP7 .ah-hours-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 14px 16px;
-  border-radius: 16px;
-  background: rgba(0,0,0,0.03);
-  font-size: 0.95rem;
-}
+    .eyebrow,
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: fit-content;
+      border-radius: 999px;
+      font-weight: 800;
+    }
 
-#ahPrototypeSimpleP7 .ah-note {
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin-top: 14px;
-  line-height: 1.5;
-}
+    .eyebrow {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 14px;
+      background: rgba(255, 255, 255, 0.17);
+      padding: 8px 12px;
+      font-size: 0.82rem;
+    }
 
-#ahPrototypeSimpleP7 .ah-link-button {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  min-height: 64px;
-  padding: 0 18px;
-  border-radius: 18px;
-  background: rgba(255,255,255,0.94);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow);
-  font-weight: 700;
-  width: 100%;
-  text-align: left;
-  color: var(--text) !important;
-  text-decoration: none !important;
-  margin-top: 18px;
-  transition: 0.2s ease;
-}
+    .hero h1 {
+      position: relative;
+      z-index: 1;
+      max-width: 12ch;
+      margin: 0 0 10px;
+      font-size: clamp(2.15rem, 12vw, 4.2rem);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+    }
 
-#ahPrototypeSimpleP7 .ah-link-button:hover {
-  transform: translateY(-2px);
-}
+    .hero p {
+      position: relative;
+      z-index: 1;
+      max-width: 42rem;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.94);
+      font-size: clamp(1rem, 4.2vw, 1.18rem);
+    }
 
-#ahPrototypeSimpleP7 .ah-link-button small {
-  display: block;
-  margin-top: 3px;
-  color: var(--muted) !important;
-  font-weight: 600;
-}
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 14px 0 4px;
+    }
 
-#ahPrototypeSimpleP7 .ah-arrow {
-  color: var(--green-dark);
-  font-size: 1.15rem;
-  flex: 0 0 auto;
-}
+    .quick-action {
+      display: grid;
+      gap: 2px;
+      min-height: 76px;
+      align-content: center;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(39, 42, 45, 0.06);
+      box-shadow: var(--shadow-sm);
+      padding: 14px;
+      text-decoration: none;
+    }
 
-@media (min-width: 760px) {
-  #ahPrototypeSimpleP7 .ah-grid-two {
-    grid-template-columns: 1fr 1fr;
-  }
-}
+    .quick-action strong {
+      font-size: 0.96rem;
+      line-height: 1.16;
+    }
 
-@media (max-width: 640px) {
-  #ahPrototypeSimpleP7 .ah-container {
-    padding-left: 14px;
-    padding-right: 14px;
-  }
+    .quick-action span {
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
 
-  #ahPrototypeSimpleP7 .ah-topbar {
-    margin-left: -14px;
-    margin-right: -14px;
-  }
+    .section {
+      margin-top: 24px;
+      scroll-margin-top: 150px;
+    }
 
-  #ahPrototypeSimpleP7 .ah-card-body {
-    padding: 18px;
-  }
+    .section-head {
+      margin-bottom: 12px;
+    }
 
-  #ahPrototypeSimpleP7 .ah-hero-card {
-    padding: 24px 20px;
-  }
+    .section-head h2 {
+      margin: 0 0 5px;
+      font-size: clamp(1.28rem, 5vw, 1.75rem);
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+    }
 
-  #ahPrototypeSimpleP7 .ah-hero-card h1 {
-    font-size: 2.3rem;
-  }
-}
-</style>
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
 
-<div id="ahPrototypeSimpleP7">
+    .card {
+      overflow: hidden;
+      border: 1px solid rgba(39, 42, 45, 0.07);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      box-shadow: var(--shadow-sm);
+    }
 
-  <header class="ah-topbar">
-    <div class="ah-top-inner">
+    .card-media {
+      position: relative;
+      background: #e9e2d7;
+    }
 
-      <div class="ah-brand">
-        <img class="ah-logo" src="https://ahandil.fo/wp-content/uploads/2016/11/a-logo-1.png" alt="Á handil">
+    .card-media img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
 
-        <div>
-          <small data-i18n="brandSmall">Underside</small>
-          <strong data-i18n="brandStrong">Á handil í Vestmanna</strong>
-        </div>
+    .card-body {
+      display: grid;
+      gap: 10px;
+      padding: 18px;
+    }
+
+    .tag {
+      background: var(--green-soft);
+      color: var(--green-dark);
+      padding: 6px 10px;
+      font-size: 0.76rem;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.08rem;
+      line-height: 1.2;
+      letter-spacing: -0.012em;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hours-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 2px;
+    }
+
+    .hours-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      min-height: 48px;
+      border-radius: var(--radius-md);
+      background: var(--surface-soft);
+      padding: 10px 12px;
+      font-size: 0.95rem;
+    }
+
+    .hours-row strong {
+      line-height: 1.15;
+    }
+
+    .hours-row span {
+      flex: 0 0 auto;
+      font-weight: 700;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .link-button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      width: 100%;
+      min-height: 64px;
+      margin-top: 4px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      padding: 12px 14px 12px 16px;
+      color: var(--text);
+      text-align: left;
+      text-decoration: none;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .link-button strong,
+    .link-button small {
+      display: block;
+    }
+
+    .link-button strong {
+      font-size: 0.96rem;
+      line-height: 1.2;
+    }
+
+    .link-button small {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .arrow {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      flex: 0 0 auto;
+      place-items: center;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+
+    .page-footer {
+      width: min(100%, 760px);
+      margin: 26px auto 0;
+      padding: 0 16px calc(18px + var(--safe-bottom));
+    }
+
+    .page-footer-inner {
+      border: 1px solid rgba(39, 42, 45, 0.08);
+      border-radius: var(--radius-xl);
+      background: rgba(255, 253, 250, 0.9);
+      box-shadow: var(--shadow-sm);
+      padding: 14px;
+    }
+
+    .footer-text {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .footer-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .footer-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      border-radius: 999px;
+      padding: 0 14px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 800;
+      line-height: 1.1;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      touch-action: manipulation;
+      user-select: none;
+    }
+
+    .footer-link.primary {
+      background: var(--green);
+      color: #fff;
+    }
+
+    .footer-link.secondary {
+      background: #fff;
+      color: var(--green-dark);
+      border: 1px solid rgba(52, 123, 32, 0.16);
+    }
+
+    :focus-visible {
+      outline: 3px solid rgba(80, 175, 49, 0.42);
+      outline-offset: 3px;
+    }
+
+    @media (min-width: 700px) {
+      .page {
+        padding-top: 12px;
+      }
+
+      .site-header {
+        border-radius: 0 0 28px 28px;
+      }
+
+      .quick-actions {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .split-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        align-items: start;
+      }
+
+      .section {
+        margin-top: 32px;
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .quick-action,
+      .link-button,
+      .footer-link,
+      .language-tabs button {
+        transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+      }
+
+      .quick-action:active,
+      .link-button:active,
+      .footer-link:active,
+      .language-tabs button:active {
+        transform: scale(0.98);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#content" data-i18n="skipLink">Gå til indhold</a>
+
+  <header class="site-header" aria-label="Sidehoved">
+    <div class="header-inner">
+      <div class="brand-row">
+        <a class="brand" href="https://ahandil.fo/" target="_blank" rel="noopener" aria-label="Á handil hjemmeside">
+          <img class="brand-logo" src="https://ahandil.fo/wp-content/uploads/2016/11/a-logo-1.png" alt="Á handil logo" width="48" height="48">
+          <span>
+            <span class="brand-kicker" data-i18n="brandSmall">Underside</span>
+            <span class="brand-title" data-i18n="brandStrong">Á handil í Vestmanna</span>
+          </span>
+        </a>
+        <span class="top-pill" data-i18n="statusRight">Vestmanna</span>
       </div>
 
-      <div class="ah-lang-switch">
-        <button type="button" class="active" data-lang="da">DA</button>
-        <button type="button" data-lang="en">EN</button>
-        <button type="button" data-lang="fr">FR</button>
-        <button type="button" data-lang="fo">FO</button>
-      </div>
-
+      <nav class="language-tabs" aria-label="Vælg sprog" role="tablist">
+        <button type="button" role="tab" aria-selected="true" data-lang="da">DA</button>
+        <button type="button" role="tab" aria-selected="false" data-lang="en">EN</button>
+        <button type="button" role="tab" aria-selected="false" data-lang="fr">FR</button>
+        <button type="button" role="tab" aria-selected="false" data-lang="fo">FO</button>
+      </nav>
     </div>
   </header>
 
-  <main class="ah-container">
-
-    <section class="ah-hero-card">
-      <div class="ah-eyebrow" data-i18n="heroEyebrow">
-        📍 Velkommen til Á handil
-      </div>
-
-      <h1 data-i18n="heroTitle">Ny her?</h1>
-
-      <p data-i18n="heroText">
-        Her finder du åbningstider, et lille indblik i Á handil og lidt hjælp, hvis du er i tvivl om noget.
-      </p>
+  <main class="page" id="content">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="eyebrow" data-i18n="heroEyebrow">📍 Velkommen til Á handil</div>
+      <h1 id="hero-title" data-i18n="heroTitle">Ny her?</h1>
+      <p data-i18n="heroText">Her finder du åbningstider, et lille indblik i Á handil og lidt hjælp, hvis du er i tvivl om noget.</p>
     </section>
 
-    <section class="ah-grid">
+    <nav class="quick-actions" aria-label="Hurtige genveje">
+      <a class="quick-action" href="#hours">
+        <strong data-i18n="quickHoursTitle">Åbningstider</strong>
+        <span data-i18n="quickHoursText">Se hvornår der er åbent</span>
+      </a>
+      <a class="quick-action" href="#offers">
+        <strong data-i18n="quickOffersTitle">Tilbud</strong>
+        <span data-i18n="quickOffersText">Åbn ugens tilbudsblad</span>
+      </a>
+      <a class="quick-action" href="#look">
+        <strong data-i18n="quickLookTitle">Find butikken</strong>
+        <span data-i18n="quickLookText">Se facaden udefra</span>
+      </a>
+      <a class="quick-action" href="#help">
+        <strong data-i18n="quickHelpTitle">Hjælp</strong>
+        <span data-i18n="quickHelpText">Gå til hjemmesiden</span>
+      </a>
+    </nav>
 
-      <article class="ah-card">
-        <img
-          class="ah-image-full"
-          src="https://itdd.au.dk/single-user-mode/wp-content/uploads/sites/103/2026/03/handilin.png"
-          alt="Facaden på Á handil i Vestmanna"
-        >
-
-        <div class="ah-card-body">
-          <div class="ah-tag" data-i18n="facadeTag">Kendetegn</div>
-
-          <h2 data-i18n="facadeCardTitle">
-            Á handil udefra
-          </h2>
-
-          <p data-i18n="facadeText">
-            Billedet viser, hvordan butikken ser ud ved ankomst.
-          </p>
-        </div>
-      </article>
-
-      <div class="ah-grid ah-grid-two">
-
-        <article class="ah-card">
-          <div class="ah-card-body">
-
-            <div class="ah-tag" data-i18n="practicalTag">
-              Praktisk info
-            </div>
-
-            <h3 data-i18n="hoursOpenTitle">
-              Butikken holder åbent
-            </h3>
-
-            <div class="ah-hours-list">
-
-              <div class="ah-hours-row">
-                <strong data-i18n="weekdayLabel">
-                  Mandag–fredag
-                </strong>
-
-                <span>09.00–22.00</span>
-              </div>
-
-              <div class="ah-hours-row">
-                <strong data-i18n="saturdayLabel">
-                  Lørdag
-                </strong>
-
-                <span>09.00–22.00</span>
-              </div>
-
-              <div class="ah-hours-row">
-                <strong data-i18n="sundayLabel">
-                  Søndag
-                </strong>
-
-                <span data-i18n="closedLabel">
-                  Lukket
-                </span>
-              </div>
-
-            </div>
-
-            <p class="ah-note" data-i18n="hoursNote">
-              Tjek gerne hjemmesiden eller opslag ved butikken ved helligdage.
-            </p>
-
-          </div>
-        </article>
-
-        <article class="ah-card">
-          <div class="ah-card-body">
-
-            <div class="ah-tag" data-i18n="localTag">
-              Lokal butik
-            </div>
-
-            <h3 data-i18n="localTitle">
-              En del af hverdagen i bygden
-            </h3>
-
-            <p data-i18n="localText">
-              Á handil er ikke kun et sted for indkøb. Det er også en lokal butik, hvor folk ofte stopper op, hilser og får en lille snak.
-            </p>
-
-          </div>
-        </article>
-
+    <section class="section" id="look" aria-labelledby="look-title">
+      <div class="section-head">
+        <h2 id="look-title" data-i18n="facadeTitle">Sådan ser Á handil ud</h2>
+        <p data-i18n="facadeSub">Butikken kan kendes på den mørke facade og det grønne Á.</p>
       </div>
 
-      <article class="ah-card">
-        <div class="ah-card-body">
-
-          <div class="ah-tag" data-i18n="offersTag">
-            Tilbud
-          </div>
-
-          <h3 data-i18n="offersTitle">
-            Se ugens tilbud
-          </h3>
-
-          <p data-i18n="offersText">
-            Du kan også åbne butikkens tilbudsblad. Tilbudsbladet er på færøsk.
-          </p>
-
-          <a
-            id="ahOffersLinkSimpleP7"
-            class="ah-link-button"
-            href="https://ahandil.fo/wp-content/uploads/2026/04/A26_V18_Netblad.pdf"
-            target="_blank"
-            rel="noopener"
-          >
-            <div>
-              <span data-i18n="offersLinkTitle">
-                Åbn tilbudsblad
-              </span>
-
-              <small data-i18n="offersLinkSmall">
-                PDF på færøsk
-              </small>
-            </div>
-
-            <span class="ah-arrow">↗</span>
-          </a>
-
+      <article class="card">
+        <div class="card-media">
+          <img src="https://itdd.au.dk/single-user-mode/wp-content/uploads/sites/103/2026/03/handilin.png" alt="Facaden på Á handil i Vestmanna" loading="lazy">
+        </div>
+        <div class="card-body">
+          <div class="tag" data-i18n="facadeTag">Kendetegn</div>
+          <h3 data-i18n="facadeCardTitle">Á handil udefra</h3>
+          <p data-i18n="facadeText">Billedet viser, hvordan butikken ser ud ved ankomst.</p>
         </div>
       </article>
-
-      <article class="ah-card">
-        <div class="ah-card-body">
-
-          <div class="ah-tag" data-i18n="helpTag">
-            Har du brug for hjælp?
-          </div>
-
-          <h3 data-i18n="helpTitle">
-            Spørg os gerne
-          </h3>
-
-          <p data-i18n="helpText">
-            Hvis du leder efter noget bestemt eller vil vide mere om butikken, hjælper vi gerne.
-          </p>
-
-          <a
-            class="ah-link-button"
-            href="https://ahandil.fo/"
-            target="_blank"
-            rel="noopener"
-          >
-            <div>
-              <span data-i18n="siteLinkTitle">
-                Til Á handils hjemmeside
-              </span>
-
-              <small data-i18n="siteLinkSmall">
-                Mere information om butikken
-              </small>
-            </div>
-
-            <span class="ah-arrow">↗</span>
-          </a>
-
-        </div>
-      </article>
-
     </section>
 
+    <div class="split-grid">
+      <section class="section" id="hours" aria-labelledby="hours-title">
+        <div class="section-head">
+          <h2 id="hours-title" data-i18n="hoursTitle">Åbningstider</h2>
+          <p data-i18n="hoursSub">Praktisk information</p>
+        </div>
+
+        <article class="card">
+          <div class="card-body">
+            <div class="tag" data-i18n="practicalTag">Praktisk info</div>
+            <h3 data-i18n="hoursOpenTitle">Butikken holder åbent</h3>
+
+            <div class="hours-list" aria-label="Åbningstider">
+              <div class="hours-row">
+                <strong data-i18n="weekdayLabel">Mandag–fredag</strong>
+                <span>09.00–22.00</span>
+              </div>
+              <div class="hours-row">
+                <strong data-i18n="saturdayLabel">Lørdag</strong>
+                <span>09.00–22.00</span>
+              </div>
+              <div class="hours-row">
+                <strong data-i18n="sundayLabel">Søndag</strong>
+                <span data-i18n="closedLabel">Lukket</span>
+              </div>
+            </div>
+
+            <p class="note" data-i18n="hoursNote">Tjek gerne hjemmesiden eller opslag ved butikken ved helligdage.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="section" aria-labelledby="welcome-title">
+        <div class="section-head">
+          <h2 id="welcome-title" data-i18n="welcomeTitle">Et lille første indblik</h2>
+          <p data-i18n="welcomeText">Á handil er den lokale butik i Vestmanna. Her kan du handle, spørge og få hjælp, hvis du er i tvivl om noget.</p>
+        </div>
+
+        <article class="card">
+          <div class="card-body">
+            <div class="tag" data-i18n="localTag">Lokal butik</div>
+            <h3 data-i18n="localTitle">En del af hverdagen i bygden</h3>
+            <p data-i18n="localText">Á handil er ikke kun et sted for indkøb. Det er også en lokal butik, hvor folk ofte stopper op, hilser og får en lille snak.</p>
+          </div>
+        </article>
+      </section>
+    </div>
+
+    <section class="section" id="offers" aria-labelledby="offers-title">
+      <article class="card">
+        <div class="card-body">
+          <div class="tag" data-i18n="offersTag">Tilbud</div>
+          <h2 id="offers-title" data-i18n="offersTitle">Se ugens tilbud</h2>
+          <p data-i18n="offersText">Du kan også åbne butikkens tilbudsblad. Tilbudsbladet er på færøsk.</p>
+
+          <a id="offersLink" class="link-button" href="https://ahandil.fo/wp-content/uploads/2026/04/A26_V18_Netblad.pdf" target="_blank" rel="noopener">
+            <span>
+              <strong data-i18n="offersLinkTitle">Åbn tilbudsblad</strong>
+              <small data-i18n="offersLinkSmall">PDF på færøsk</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" id="help" aria-labelledby="help-title">
+      <article class="card">
+        <div class="card-body">
+          <div class="tag" data-i18n="helpTag">Har du brug for hjælp?</div>
+          <h2 id="help-title" data-i18n="helpTitle">Spørg os gerne</h2>
+          <p data-i18n="helpText">Hvis du leder efter noget bestemt eller vil vide mere om butikken, hjælper vi gerne.</p>
+
+          <a class="link-button" href="https://ahandil.fo/" target="_blank" rel="noopener">
+            <span>
+              <strong data-i18n="siteLinkTitle">Til Á handils hjemmeside</strong>
+              <small data-i18n="siteLinkSmall">Mere information om butikken</small>
+            </span>
+            <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </article>
+    </section>
   </main>
-</div>
 
-<script>
-(function () {
-  const root = document.getElementById("ahPrototypeSimpleP7");
-  if (!root) return;
+  <footer class="page-footer" aria-label="Genveje">
+    <div class="page-footer-inner">
+      <p class="footer-text" data-i18n="footerText">Hurtige genveje</p>
+      <div class="footer-actions">
+        <a id="bottomHoursLink" class="footer-link secondary" href="#hours" aria-label="Gå til åbningstider" data-i18n="bottomHours">Åbningstider</a>
+        <a id="bottomOffersLink" class="footer-link primary" href="https://ahandil.fo/wp-content/uploads/2026/04/A26_V18_Netblad.pdf" target="_blank" rel="noopener noreferrer" aria-label="Åbn tilbudsblad" data-i18n="bottomOffers">Se tilbud</a>
+      </div>
+    </div>
+  </footer>
 
-  const AH_CURRENT_OFFERS_PDF =
-    "https://ahandil.fo/wp-content/uploads/2026/04/A26_V18_Netblad.pdf";
+  <script>
+    (() => {
+      const OFFERS_PDF = "https://ahandil.fo/wp-content/uploads/2026/04/A26_V18_Netblad.pdf";
+      const DEFAULT_LANG = "da";
+      const STORAGE_KEY = "ahandilPreferredLanguage";
 
-  const offersLink = root.querySelector("#ahOffersLinkSimpleP7");
+      const translations = {
+        da: {
+          pageTitle: "Ny her? | Á handil í Vestmanna",
+          skipLink: "Gå til indhold",
+          statusRight: "Vestmanna",
+          brandSmall: "Underside",
+          brandStrong: "Á handil í Vestmanna",
+          heroEyebrow: "📍 Velkommen til Á handil",
+          heroTitle: "Ny her?",
+          heroText: "Her finder du åbningstider, et lille indblik i Á handil og lidt hjælp, hvis du er i tvivl om noget.",
+          quickHoursTitle: "Åbningstider",
+          quickHoursText: "Se hvornår der er åbent",
+          quickOffersTitle: "Tilbud",
+          quickOffersText: "Åbn ugens tilbudsblad",
+          quickLookTitle: "Find butikken",
+          quickLookText: "Se facaden udefra",
+          quickHelpTitle: "Hjælp",
+          quickHelpText: "Gå til hjemmesiden",
+          footerText: "Hurtige genveje",
+          facadeTitle: "Sådan ser Á handil ud",
+          facadeSub: "Butikken kan kendes på den mørke facade og det grønne Á.",
+          facadeTag: "Kendetegn",
+          facadeCardTitle: "Á handil udefra",
+          facadeText: "Billedet viser, hvordan butikken ser ud ved ankomst.",
+          hoursTitle: "Åbningstider",
+          hoursSub: "Praktisk information",
+          practicalTag: "Praktisk info",
+          hoursOpenTitle: "Butikken holder åbent",
+          weekdayLabel: "Mandag–fredag",
+          saturdayLabel: "Lørdag",
+          sundayLabel: "Søndag",
+          closedLabel: "Lukket",
+          hoursNote: "Tjek gerne hjemmesiden eller opslag ved butikken ved helligdage.",
+          welcomeTitle: "Et lille første indblik",
+          welcomeText: "Á handil er den lokale butik i Vestmanna. Her kan du handle, spørge og få hjælp, hvis du er i tvivl om noget.",
+          localTag: "Lokal butik",
+          localTitle: "En del af hverdagen i bygden",
+          localText: "Á handil er ikke kun et sted for indkøb. Det er også en lokal butik, hvor folk ofte stopper op, hilser og får en lille snak.",
+          offersTag: "Tilbud",
+          offersTitle: "Se ugens tilbud",
+          offersText: "Du kan også åbne butikkens tilbudsblad. Tilbudsbladet er på færøsk.",
+          offersLinkTitle: "Åbn tilbudsblad",
+          offersLinkSmall: "PDF på færøsk",
+          helpTag: "Har du brug for hjælp?",
+          helpTitle: "Spørg os gerne",
+          helpText: "Hvis du leder efter noget bestemt eller vil vide mere om butikken, hjælper vi gerne.",
+          siteLinkTitle: "Til Á handils hjemmeside",
+          siteLinkSmall: "Mere information om butikken",
+          bottomHours: "Åbningstider",
+          bottomOffers: "Se tilbud"
+        },
+        en: {
+          pageTitle: "New here? | Á handil in Vestmanna",
+          skipLink: "Skip to content",
+          statusRight: "Vestmanna",
+          brandSmall: "Subpage",
+          brandStrong: "Á handil in Vestmanna",
+          heroEyebrow: "📍 Welcome to Á handil",
+          heroTitle: "New here?",
+          heroText: "Here you can find opening hours, a short introduction to Á handil, and a little help if you are unsure about anything.",
+          quickHoursTitle: "Opening hours",
+          quickHoursText: "See when the shop is open",
+          quickOffersTitle: "Offers",
+          quickOffersText: "Open this week’s leaflet",
+          quickLookTitle: "Find the shop",
+          quickLookText: "See the facade outside",
+          quickHelpTitle: "Help",
+          quickHelpText: "Go to the website",
+          footerText: "Quick links",
+          facadeTitle: "This is what Á handil looks like",
+          facadeSub: "The shop can be recognised by its dark facade and the green Á.",
+          facadeTag: "Landmark",
+          facadeCardTitle: "Á handil from outside",
+          facadeText: "The image shows what the shop looks like when you arrive.",
+          hoursTitle: "Opening hours",
+          hoursSub: "Practical information",
+          practicalTag: "Practical info",
+          hoursOpenTitle: "The shop is open",
+          weekdayLabel: "Monday–Friday",
+          saturdayLabel: "Saturday",
+          sundayLabel: "Sunday",
+          closedLabel: "Closed",
+          hoursNote: "Please check the website or the notice at the shop on public holidays.",
+          welcomeTitle: "A small first glimpse",
+          welcomeText: "Á handil is the local shop in Vestmanna. Here you can shop, ask questions, and get help if you are unsure about something.",
+          localTag: "Local shop",
+          localTitle: "Part of everyday village life",
+          localText: "Á handil is not only a place to shop. It is also a local shop where people often stop, greet each other, and have a short chat.",
+          offersTag: "Offers",
+          offersTitle: "See this week’s offers",
+          offersText: "You can also open the shop’s offer leaflet. The leaflet is in Faroese.",
+          offersLinkTitle: "Open offer leaflet",
+          offersLinkSmall: "PDF in Faroese",
+          helpTag: "Need help?",
+          helpTitle: "Feel free to ask",
+          helpText: "If you are looking for something specific or want to know more about the shop, we are happy to help.",
+          siteLinkTitle: "Go to Á handil website",
+          siteLinkSmall: "More information about the shop",
+          bottomHours: "Opening hours",
+          bottomOffers: "See offers"
+        },
+        fr: {
+          pageTitle: "Nouveau ici ? | Á handil à Vestmanna",
+          skipLink: "Aller au contenu",
+          statusRight: "Vestmanna",
+          brandSmall: "Sous-page",
+          brandStrong: "Á handil à Vestmanna",
+          heroEyebrow: "📍 Bienvenue chez Á handil",
+          heroTitle: "Nouveau ici ?",
+          heroText: "Vous trouverez ici les horaires, une petite présentation de Á handil et un peu d’aide si vous avez un doute.",
+          quickHoursTitle: "Horaires",
+          quickHoursText: "Voir les heures d’ouverture",
+          quickOffersTitle: "Offres",
+          quickOffersText: "Ouvrir le prospectus",
+          quickLookTitle: "Trouver le magasin",
+          quickLookText: "Voir la façade extérieure",
+          quickHelpTitle: "Aide",
+          quickHelpText: "Aller au site web",
+          footerText: "Liens rapides",
+          facadeTitle: "Voici à quoi ressemble Á handil",
+          facadeSub: "Le magasin se reconnaît à sa façade sombre et au Á vert.",
+          facadeTag: "Repère",
+          facadeCardTitle: "Á handil vu de l’extérieur",
+          facadeText: "L’image montre à quoi ressemble le magasin à l’arrivée.",
+          hoursTitle: "Horaires",
+          hoursSub: "Informations pratiques",
+          practicalTag: "Infos pratiques",
+          hoursOpenTitle: "Le magasin est ouvert",
+          weekdayLabel: "Lundi–vendredi",
+          saturdayLabel: "Samedi",
+          sundayLabel: "Dimanche",
+          closedLabel: "Fermé",
+          hoursNote: "Veuillez vérifier le site web ou l’affiche du magasin les jours fériés.",
+          welcomeTitle: "Un petit premier aperçu",
+          welcomeText: "Á handil est le magasin local de Vestmanna. Ici, vous pouvez faire vos courses, poser des questions et obtenir de l’aide si besoin.",
+          localTag: "Magasin local",
+          localTitle: "Une part de la vie quotidienne du village",
+          localText: "Á handil n’est pas seulement un lieu d’achat. C’est aussi un magasin local où les gens s’arrêtent souvent, se saluent et échangent quelques mots.",
+          offersTag: "Offres",
+          offersTitle: "Voir les offres de la semaine",
+          offersText: "Vous pouvez aussi ouvrir le prospectus des offres du magasin. Le prospectus est en féroïen.",
+          offersLinkTitle: "Ouvrir le prospectus",
+          offersLinkSmall: "PDF en féroïen",
+          helpTag: "Besoin d’aide ?",
+          helpTitle: "N’hésitez pas à demander",
+          helpText: "Si vous cherchez quelque chose de précis ou si vous voulez en savoir plus sur le magasin, nous serons heureux de vous aider.",
+          siteLinkTitle: "Aller au site web de Á handil",
+          siteLinkSmall: "Plus d’informations sur le magasin",
+          bottomHours: "Horaires",
+          bottomOffers: "Voir offres"
+        },
+        fo: {
+          pageTitle: "Nýggj/ur her? | Á handil í Vestmanna",
+          skipLink: "Far til innihald",
+          statusRight: "Vestmanna",
+          brandSmall: "Undirsíða",
+          brandStrong: "Á handil í Vestmanna",
+          heroEyebrow: "📍 Vælkomin í Á handil",
+          heroTitle: "Nýggj/ur her?",
+          heroText: "Her finnur tú upplatingartíðir, eitt lítið innlit í Á handil og eitt sindur av hjálp, um tú ert í iva um okkurt.",
+          quickHoursTitle: "Upplatingartíðir",
+          quickHoursText: "Sí nær handilin er opin",
+          quickOffersTitle: "Tilboð",
+          quickOffersText: "Lat vikunnar blað upp",
+          quickLookTitle: "Finn handilin",
+          quickLookText: "Sí fasaduna uttanífrá",
+          quickHelpTitle: "Hjálp",
+          quickHelpText: "Far til heimasíðuna",
+          footerText: "Skjótir leinkir",
+          facadeTitle: "Soleiðis sær Á handil út",
+          facadeSub: "Handilin kennist aftur á myrku fasaduni og tí grøna Á-num.",
+          facadeTag: "Kennimerki",
+          facadeCardTitle: "Á handil uttanífrá",
+          facadeText: "Myndin vísir, hvussu handilin sær út, tá tú kemur fram.",
+          hoursTitle: "Upplatingartíðir",
+          hoursSub: "Praktisk kunning",
+          practicalTag: "Praktisk kunning",
+          hoursOpenTitle: "Handilin er opin",
+          weekdayLabel: "Mánadag–fríggjadag",
+          saturdayLabel: "Leygardag",
+          sundayLabel: "Sunnudag",
+          closedLabel: "Stongt",
+          hoursNote: "Kanna fegin heimasíðuna ella uppslagið við handilin halgidagar.",
+          welcomeTitle: "Eitt lítið fyrsta innlit",
+          welcomeText: "Á handil er tann lokali handilin í Vestmanna. Her kanst tú keypa, spyrja og fáa hjálp, um tú ert í iva um okkurt.",
+          localTag: "Lokalur handil",
+          localTitle: "Partur av gerandisdegnum í bygdini",
+          localText: "Á handil er ikki bara eitt stað at keypa. Tað er eisini ein lokalur handil, har fólk ofta steðga, heilsa og fáa sær eina lítla samrøðu.",
+          offersTag: "Tilboð",
+          offersTitle: "Sí vikunnar tilboð",
+          offersText: "Tú kanst eisini lata upp tilboðsbløðini hjá handlinum. Tilboðsblaðið er á føroyskum.",
+          offersLinkTitle: "Lat tilboðsblaðið upp",
+          offersLinkSmall: "PDF á føroyskum",
+          helpTag: "Hevur tú tørv á hjálp?",
+          helpTitle: "Spyr okkum endiliga",
+          helpText: "Um tú leitar eftir nøkrum ávísum ella vilt vita meira um handilin, hjálpa vit fegin.",
+          siteLinkTitle: "Til heimasíðuna hjá Á handli",
+          siteLinkSmall: "Meira kunning um handilin",
+          bottomHours: "Upplatingartíðir",
+          bottomOffers: "Sí tilboð"
+        }
+      };
 
-  if (offersLink) {
-    offersLink.href = AH_CURRENT_OFFERS_PDF;
-  }
+      const supportedLanguages = Object.keys(translations);
+      const browserLanguage = (navigator.language || DEFAULT_LANG).slice(0, 2).toLowerCase();
+      const storedLanguage = localStorage.getItem(STORAGE_KEY);
+      const initialLanguage = supportedLanguages.includes(storedLanguage)
+        ? storedLanguage
+        : supportedLanguages.includes(browserLanguage)
+          ? browserLanguage
+          : DEFAULT_LANG;
 
-  const translations = {
-    da: {
-      brandSmall: "Underside",
-      brandStrong: "Á handil í Vestmanna",
-      heroEyebrow: "📍 Velkommen til Á handil",
-      heroTitle: "Ny her?",
-      heroText: "Her finder du åbningstider, et lille indblik i Á handil og lidt hjælp, hvis du er i tvivl om noget.",
-      facadeTag: "Kendetegn",
-      facadeCardTitle: "Á handil udefra",
-      facadeText: "Billedet viser, hvordan butikken ser ud ved ankomst.",
-      practicalTag: "Praktisk info",
-      hoursOpenTitle: "Butikken holder åbent",
-      weekdayLabel: "Mandag–fredag",
-      saturdayLabel: "Lørdag",
-      sundayLabel: "Søndag",
-      closedLabel: "Lukket",
-      hoursNote: "Tjek gerne hjemmesiden eller opslag ved butikken ved helligdage.",
-      localTag: "Lokal butik",
-      localTitle: "En del af hverdagen i bygden",
-      localText: "Á handil er ikke kun et sted for indkøb. Det er også en lokal butik, hvor folk ofte stopper op, hilser og får en lille snak.",
-      offersTag: "Tilbud",
-      offersTitle: "Se ugens tilbud",
-      offersText: "Du kan også åbne butikkens tilbudsblad. Tilbudsbladet er på færøsk.",
-      offersLinkTitle: "Åbn tilbudsblad",
-      offersLinkSmall: "PDF på færøsk",
-      helpTag: "Har du brug for hjælp?",
-      helpTitle: "Spørg os gerne",
-      helpText: "Hvis du leder efter noget bestemt eller vil vide mere om butikken, hjælper vi gerne.",
-      siteLinkTitle: "Til Á handils hjemmeside",
-      siteLinkSmall: "Mere information om butikken"
-    },
+      document.querySelectorAll("#offersLink, #bottomOffersLink").forEach((link) => {
+        link.href = OFFERS_PDF;
+      });
 
-    en: {
-      brandSmall: "Subpage",
-      brandStrong: "Á handil in Vestmanna",
-      heroEyebrow: "📍 Welcome to Á handil",
-      heroTitle: "New here?",
-      heroText: "Here you can find opening hours, a short introduction to Á handil, and a little help if you are unsure about anything.",
-      facadeTag: "Landmark",
-      facadeCardTitle: "Á handil from outside",
-      facadeText: "The image shows what the shop looks like when you arrive.",
-      practicalTag: "Practical info",
-      hoursOpenTitle: "The shop is open",
-      weekdayLabel: "Monday–Friday",
-      saturdayLabel: "Saturday",
-      sundayLabel: "Sunday",
-      closedLabel: "Closed",
-      hoursNote: "Please check the website or the notice at the shop on public holidays.",
-      localTag: "Local shop",
-      localTitle: "Part of everyday village life",
-      localText: "Á handil is not only a place to shop. It is also a local shop where people often stop, greet each other, and have a short chat.",
-      offersTag: "Offers",
-      offersTitle: "See this week’s offers",
-      offersText: "You can also open the shop’s offer leaflet. The leaflet is in Faroese.",
-      offersLinkTitle: "Open offer leaflet",
-      offersLinkSmall: "PDF in Faroese",
-      helpTag: "Need help?",
-      helpTitle: "Feel free to ask",
-      helpText: "If you are looking for something specific or want to know more about the shop, we are happy to help.",
-      siteLinkTitle: "Go to Á handil website",
-      siteLinkSmall: "More information about the shop"
-    },
+      function applyTranslations(lang) {
+        const dictionary = translations[lang] || translations[DEFAULT_LANG];
 
-    fr: {
-      brandSmall: "Sous-page",
-      brandStrong: "Á handil à Vestmanna",
-      heroEyebrow: "📍 Bienvenue chez Á handil",
-      heroTitle: "Nouveau ici ?",
-      heroText: "Vous trouverez ici les horaires, une petite présentation de Á handil et un peu d’aide si vous avez un doute.",
-      facadeTag: "Repère",
-      facadeCardTitle: "Á handil vu de l’extérieur",
-      facadeText: "L’image montre à quoi ressemble le magasin à l’arrivée.",
-      practicalTag: "Infos pratiques",
-      hoursOpenTitle: "Le magasin est ouvert",
-      weekdayLabel: "Lundi–vendredi",
-      saturdayLabel: "Samedi",
-      sundayLabel: "Dimanche",
-      closedLabel: "Fermé",
-      hoursNote: "Veuillez vérifier le site web ou l’affiche du magasin les jours fériés.",
-      localTag: "Magasin local",
-      localTitle: "Une part de la vie quotidienne du village",
-      localText: "Á handil n’est pas seulement un lieu d’achat. C’est aussi un magasin local où les gens s’arrêtent souvent, se saluent et échangent quelques mots.",
-      offersTag: "Offres",
-      offersTitle: "Voir les offres de la semaine",
-      offersText: "Vous pouvez aussi ouvrir le prospectus des offres du magasin. Le prospectus est en féroïen.",
-      offersLinkTitle: "Ouvrir le prospectus",
-      offersLinkSmall: "PDF en féroïen",
-      helpTag: "Besoin d’aide ?",
-      helpTitle: "N’hésitez pas à demander",
-      helpText: "Si vous cherchez quelque chose de précis ou si vous voulez en savoir plus sur le magasin, nous serons heureux de vous aider.",
-      siteLinkTitle: "Aller au site web de Á handil",
-      siteLinkSmall: "Plus d’informations sur le magasin"
-    },
+        document.documentElement.lang = lang;
+        document.title = dictionary.pageTitle;
+        localStorage.setItem(STORAGE_KEY, lang);
 
-    fo: {
-      brandSmall: "Undirsíða",
-      brandStrong: "Á handil í Vestmanna",
-      heroEyebrow: "📍 Vælkomin í Á handil",
-      heroTitle: "Nýggj/ur her?",
-      heroText: "Her finnur tú upplatingartíðir, eitt lítið innlit í Á handil og eitt sindur av hjálp, um tú ert í iva um okkurt.",
-      facadeTag: "Kennimerki",
-      facadeCardTitle: "Á handil uttanífrá",
-      facadeText: "Myndin vísir, hvussu handilin sær út, tá tú kemur fram.",
-      practicalTag: "Praktisk kunning",
-      hoursOpenTitle: "Handilin er opin",
-      weekdayLabel: "Mánadag–fríggjadag",
-      saturdayLabel: "Leygardag",
-      sundayLabel: "Sunnudag",
-      closedLabel: "Stongt",
-      hoursNote: "Kanna fegin heimasíðuna ella uppslagið við handilin halgidagar.",
-      localTag: "Lokalur handil",
-      localTitle: "Partur av gerandisdegnum í bygdini",
-      localText: "Á handil er ikki bara eitt stað at keypa. Tað er eisini ein lokalur handil, har fólk ofta steðga, heilsa og fáa sær eina lítla samrøðu.",
-      offersTag: "Tilboð",
-      offersTitle: "Sí vikunnar tilboð",
-      offersText: "Tú kanst eisini lata upp tilboðsbløðini hjá handlinum. Tilboðsblaðið er á føroyskum.",
-      offersLinkTitle: "Lat tilboðsblaðið upp",
-      offersLinkSmall: "PDF á føroyskum",
-      helpTag: "Hevur tú tørv á hjálp?",
-      helpTitle: "Spyr okkum endiliga",
-      helpText: "Um tú leitar eftir nøkrum ávísum ella vilt vita meira um handilin, hjálpa vit fegin.",
-      siteLinkTitle: "Til heimasíðuna hjá Á handli",
-      siteLinkSmall: "Meira kunning um handilin"
-    }
-  };
+        document.querySelectorAll("[data-i18n]").forEach((element) => {
+          const key = element.dataset.i18n;
+          if (dictionary[key]) {
+            element.textContent = dictionary[key];
+          }
+        });
 
-  function applyTranslations(lang) {
-    root.querySelectorAll(".ah-lang-switch button").forEach(function (btn) {
-      btn.classList.toggle("active", btn.dataset.lang === lang);
-    });
-
-    root.querySelectorAll("[data-i18n]").forEach(function (el) {
-      const key = el.getAttribute("data-i18n");
-
-      if (translations[lang] && translations[lang][key]) {
-        el.textContent = translations[lang][key];
+        document.querySelectorAll("[data-lang]").forEach((button) => {
+          const isActive = button.dataset.lang === lang;
+          button.setAttribute("aria-selected", String(isActive));
+        });
       }
-    });
-  }
 
-  root.querySelectorAll(".ah-lang-switch button").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      applyTranslations(this.dataset.lang);
-    });
-  });
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.addEventListener("click", () => applyTranslations(button.dataset.lang));
+      });
 
-  applyTranslations("da");
-})();
-</script>
+      function scrollToSection(id) {
+        const target = document.getElementById(id);
+        if (!target) return;
+
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const targetId = link.getAttribute("href").slice(1);
+          const target = document.getElementById(targetId);
+          if (!target) return;
+
+          event.preventDefault();
+          scrollToSection(targetId);
+        });
+      });
+
+      const bottomHoursLink = document.getElementById("bottomHoursLink");
+      if (bottomHoursLink) {
+        bottomHoursLink.addEventListener("click", (event) => {
+          event.preventDefault();
+          scrollToSection("hours");
+        });
+      }
+
+      const bottomOffersLink = document.getElementById("bottomOffersLink");
+      if (bottomOffersLink) {
+        bottomOffersLink.addEventListener("click", (event) => {
+          event.preventDefault();
+          window.open(OFFERS_PDF, "_blank", "noopener,noreferrer");
+        });
+      }
+
+      applyTranslations(initialLanguage);
+    })();
+  </script>
+</body>
+</html>
