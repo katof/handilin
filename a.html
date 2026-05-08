@@ -29,7 +29,7 @@
       --radius: 18px;
       --radius-small: 12px;
       --safe-bottom: env(safe-area-inset-bottom, 0px);
-      --footer-space: 150px;
+      --footer-space: 96px;
     }
 
     *,
@@ -513,6 +513,37 @@
       color: var(--muted);
       font-size: 0.82rem;
       font-weight: 700;
+      text-align: right;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 4px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(69, 173, 43, 0.14);
+    }
+
+    .info-row {
+      display: grid;
+      gap: 2px;
+      padding: 10px 12px;
+      border-radius: var(--radius-small);
+      background: #fff;
+      border: 1px solid rgba(69, 173, 43, 0.12);
+    }
+
+    .info-row strong {
+      color: var(--green-dark);
+      font-size: 0.82rem;
+    }
+
+    .info-row span,
+    .info-row a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
     }
 
     .surprise-card {
@@ -605,7 +636,7 @@
       bottom: 0;
       left: 0;
       z-index: 45;
-      padding: 10px 14px calc(10px + var(--safe-bottom));
+      padding: 8px 14px calc(8px + var(--safe-bottom));
       background: rgba(255, 255, 255, 0.96);
       border-top: 1px solid rgba(69, 173, 43, 0.18);
       box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.12);
@@ -613,50 +644,48 @@
     }
 
     .page-footer-inner {
-      width: min(100%, 920px);
+      width: min(100%, 420px);
       margin: 0 auto;
-      display: grid;
-      gap: 8px;
-    }
-
-    .footer-text {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.78rem;
-      font-weight: 800;
-      text-align: center;
     }
 
     .footer-actions {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
+      gap: 10px;
     }
 
-    .footer-link {
-      min-height: 44px;
-      border: 0;
-      border-radius: 999px;
+    .footer-icon-link {
       display: grid;
       place-items: center;
-      padding: 8px 10px;
+      min-height: 48px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid rgba(69, 173, 43, 0.22);
+      color: var(--green-site);
       text-decoration: none;
-      font-size: 0.84rem;
-      font-weight: 800;
-      cursor: pointer;
-      text-align: center;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
     }
 
-    .footer-link.primary {
-      background: var(--green-site);
-      color: white;
-      box-shadow: 0 8px 18px rgba(69, 173, 43, 0.26);
+    .footer-icon-link svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
-    .footer-link.secondary {
-      background: var(--green-soft);
-      color: var(--green-dark);
-      border: 1px solid rgba(69, 173, 43, 0.16);
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     :focus-visible {
@@ -688,7 +717,7 @@
 
     @media (max-width: 520px) {
       :root {
-        --footer-space: 190px;
+        --footer-space: 88px;
       }
 
       .hero {
@@ -708,26 +737,26 @@
         font-size: 0.72rem;
       }
 
-      .footer-actions {
-        grid-template-columns: repeat(2, 1fr);
+      .page-footer {
+        padding-top: 7px;
       }
 
-      .footer-actions .footer-link:last-child {
-        grid-column: 1 / -1;
+      .footer-icon-link {
+        min-height: 46px;
       }
     }
 
     @media (prefers-reduced-motion: no-preference) {
       .quick-action,
       .link-button,
-      .footer-link,
+      .footer-icon-link,
       .language-tabs button {
         transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
       }
 
       .quick-action:active,
       .link-button:active,
-      .footer-link:active,
+      .footer-icon-link:active,
       .language-tabs button:active {
         transform: scale(0.98);
       }
@@ -824,12 +853,7 @@
 
             <div class="hours-list" aria-label="Åbningstider">
               <div class="hours-row">
-                <strong data-i18n="weekdayLabel">Mandag–fredag</strong>
-                <span>09.00–22.00</span>
-              </div>
-
-              <div class="hours-row">
-                <strong data-i18n="saturdayLabel">Lørdag</strong>
+                <strong data-i18n="weekdaySaturdayLabel">Mandag–lørdag</strong>
                 <span>09.00–22.00</span>
               </div>
 
@@ -891,15 +915,47 @@
           <p data-i18n="helpText">Hvis du leder efter noget bestemt eller vil vide mere om butikken, hjælper vi gerne.</p>
 
           <div class="contact-grid">
-            <a class="contact-link" href="tel:+298000000">
-              <strong data-i18n="phoneTitle">Ring til butikken</strong>
-              <span>+298 00 00 00</span>
+            <a class="contact-link" href="tel:+298253311">
+              <strong data-i18n="phoneLeaderTitle">Ring til lederen</strong>
+              <span>25 33 11</span>
             </a>
 
-            <a class="contact-link" href="mailto:bestyrari@ahandil.fo">
-              <strong data-i18n="emailTitle">Skriv til bestyreren</strong>
-              <span>bestyrari@ahandil.fo</span>
+            <a class="contact-link" href="mailto:fbn@ahandil.fo">
+              <strong data-i18n="emailLeaderTitle">Skriv til lederen</strong>
+              <span>fbn@ahandil.fo</span>
             </a>
+
+            <a class="contact-link" href="tel:+298442005">
+              <strong data-i18n="phoneShopTitle">Ring til butikken</strong>
+              <span>44 20 05</span>
+            </a>
+
+            <a class="contact-link" href="mailto:avestmanna@haraldsen.fo">
+              <strong data-i18n="emailShopTitle">Skriv til butikken</strong>
+              <span>avestmanna@haraldsen.fo</span>
+            </a>
+          </div>
+
+          <div class="info-list" aria-label="Kontaktinformation">
+            <div class="info-row">
+              <strong data-i18n="managerLabel">Handilsleiðari</strong>
+              <span>Fríðvør B. Nielsen</span>
+            </div>
+
+            <div class="info-row">
+              <strong data-i18n="addressLabel">Adresse</strong>
+              <span>Fjarðarvegur 12, 350 Vestmanna</span>
+            </div>
+
+            <div class="info-row">
+              <strong data-i18n="invoiceLabel">Faktura</strong>
+              <a href="mailto:faktura.avestmanna@haraldsen.fo">faktura.avestmanna@haraldsen.fo</a>
+            </div>
+
+            <div class="info-row">
+              <strong>V-tal</strong>
+              <span>605 174</span>
+            </div>
           </div>
 
           <a
@@ -963,29 +1019,28 @@
 
   <footer class="page-footer" aria-label="Genveje">
     <div class="page-footer-inner">
-      <p class="footer-text" data-i18n="footerText">Hurtige genveje</p>
-
       <div class="footer-actions">
-        <a class="footer-link secondary" href="#hours" data-i18n="bottomHours">Åbningstider</a>
-
-        <a
-          class="footer-link primary"
-          href="https://ahandil.fo/wp-content/uploads/2026/04/A26_V18_Netblad.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          data-i18n="bottomOffers"
-        >
-          Se tilbud
+        <a class="footer-icon-link" href="#hours" aria-label="Åbningstider">
+          <span class="sr-only">Åbningstider</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 7v5l3 2"></path>
+          </svg>
         </a>
 
-        <a
-          class="footer-link secondary"
-          href="https://ahandil.fo/"
-          target="_blank"
-          rel="noopener noreferrer"
-          data-i18n="bottomWebsite"
-        >
-          Hjemmeside
+        <a class="footer-icon-link" href="tel:+298253311" aria-label="Ring til Fríðvør B. Nielsen">
+          <span class="sr-only">Ring til Fríðvør B. Nielsen</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.35 1.89.66 2.78a2 2 0 0 1-.45 2.11L8.05 9.88a16 16 0 0 0 6.07 6.07l1.27-1.27a2 2 0 0 1 2.11-.45c.89.31 1.82.53 2.78.66A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+        </a>
+
+        <a class="footer-icon-link" href="mailto:fbn@ahandil.fo" aria-label="Skriv til Fríðvør B. Nielsen">
+          <span class="sr-only">Skriv til Fríðvør B. Nielsen</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+            <path d="m3 7 9 6 9-6"></path>
+          </svg>
         </a>
       </div>
     </div>
@@ -1026,8 +1081,7 @@
           hoursSub: "Praktisk information",
           practicalTag: "Praktisk info",
           hoursOpenTitle: "Butikken holder åbent",
-          weekdayLabel: "Mandag–fredag",
-          saturdayLabel: "Lørdag",
+          weekdaySaturdayLabel: "Mandag–lørdag",
           sundayLabel: "Søndag",
           closedLabel: "Lukket",
           hoursNote: "Tjek gerne hjemmesiden eller opslag ved butikken ved helligdage.",
@@ -1047,8 +1101,13 @@
           helpTag: "Har du brug for hjælp?",
           helpTitle: "Spørg os gerne",
           helpText: "Hvis du leder efter noget bestemt eller vil vide mere om butikken, hjælper vi gerne.",
-          phoneTitle: "Ring til butikken",
-          emailTitle: "Skriv til bestyreren",
+          phoneLeaderTitle: "Ring til lederen",
+          emailLeaderTitle: "Skriv til lederen",
+          phoneShopTitle: "Ring til butikken",
+          emailShopTitle: "Skriv til butikken",
+          managerLabel: "Handilsleiðari",
+          addressLabel: "Adresse",
+          invoiceLabel: "Faktura",
           siteLinkTitle: "Til Á handils hjemmeside",
           siteLinkSmall: "Mere information om butikken",
 
@@ -1067,12 +1126,7 @@
           foAdviceOneTitle: "Spørg personalet",
           foAdviceOneText: "Hvis du ikke finder det, du leder efter, hjælper vi gerne.",
           foAdviceTwoTitle: "Ring eller skriv",
-          foAdviceTwoText: "Du kan kontakte butikken, hvis du har spørgsmål.",
-
-          footerText: "Hurtige genveje",
-          bottomHours: "Åbningstider",
-          bottomOffers: "Se tilbud",
-          bottomWebsite: "Hjemmeside"
+          foAdviceTwoText: "Du kan kontakte butikken, hvis du har spørgsmål."
         },
 
         en: {
@@ -1104,8 +1158,7 @@
           hoursSub: "Practical information",
           practicalTag: "Practical info",
           hoursOpenTitle: "The shop is open",
-          weekdayLabel: "Monday–Friday",
-          saturdayLabel: "Saturday",
+          weekdaySaturdayLabel: "Monday–Saturday",
           sundayLabel: "Sunday",
           closedLabel: "Closed",
           hoursNote: "Please check the website or the notice at the shop on public holidays.",
@@ -1125,8 +1178,13 @@
           helpTag: "Need help?",
           helpTitle: "Feel free to ask",
           helpText: "If you are looking for something specific or want to know more about the shop, we are happy to help.",
-          phoneTitle: "Call the shop",
-          emailTitle: "Email the manager",
+          phoneLeaderTitle: "Call the manager",
+          emailLeaderTitle: "Email the manager",
+          phoneShopTitle: "Call the shop",
+          emailShopTitle: "Email the shop",
+          managerLabel: "Shop manager",
+          addressLabel: "Address",
+          invoiceLabel: "Invoice",
           siteLinkTitle: "Go to Á handil website",
           siteLinkSmall: "More information about the shop",
 
@@ -1145,12 +1203,7 @@
           foAdviceOneTitle: "Ask the staff",
           foAdviceOneText: "If you cannot find what you are looking for, we are happy to help.",
           foAdviceTwoTitle: "Call or email",
-          foAdviceTwoText: "You can contact the shop if you have questions.",
-
-          footerText: "Quick links",
-          bottomHours: "Opening hours",
-          bottomOffers: "See offers",
-          bottomWebsite: "Website"
+          foAdviceTwoText: "You can contact the shop if you have questions."
         },
 
         fr: {
@@ -1182,8 +1235,7 @@
           hoursSub: "Informations pratiques",
           practicalTag: "Infos pratiques",
           hoursOpenTitle: "Le magasin est ouvert",
-          weekdayLabel: "Lundi–vendredi",
-          saturdayLabel: "Samedi",
+          weekdaySaturdayLabel: "Lundi–samedi",
           sundayLabel: "Dimanche",
           closedLabel: "Fermé",
           hoursNote: "Veuillez vérifier le site web ou l’affiche du magasin les jours fériés.",
@@ -1203,8 +1255,13 @@
           helpTag: "Besoin d’aide ?",
           helpTitle: "N’hésitez pas à demander",
           helpText: "Si vous cherchez quelque chose de précis ou si vous voulez en savoir plus sur le magasin, nous serons heureux de vous aider.",
-          phoneTitle: "Appeler le magasin",
-          emailTitle: "Écrire au responsable",
+          phoneLeaderTitle: "Appeler la responsable",
+          emailLeaderTitle: "Écrire à la responsable",
+          phoneShopTitle: "Appeler le magasin",
+          emailShopTitle: "Écrire au magasin",
+          managerLabel: "Responsable du magasin",
+          addressLabel: "Adresse",
+          invoiceLabel: "Facture",
           siteLinkTitle: "Aller au site web de Á handil",
           siteLinkSmall: "Plus d’informations sur le magasin",
 
@@ -1223,12 +1280,7 @@
           foAdviceOneTitle: "Demandez au personnel",
           foAdviceOneText: "Si vous ne trouvez pas ce que vous cherchez, nous serons heureux de vous aider.",
           foAdviceTwoTitle: "Appelez ou écrivez",
-          foAdviceTwoText: "Vous pouvez contacter le magasin si vous avez des questions.",
-
-          footerText: "Liens rapides",
-          bottomHours: "Horaires",
-          bottomOffers: "Voir offres",
-          bottomWebsite: "Site web"
+          foAdviceTwoText: "Vous pouvez contacter le magasin si vous avez des questions."
         },
 
         fo: {
@@ -1260,8 +1312,7 @@
           hoursSub: "Praktisk kunning",
           practicalTag: "Praktisk kunning",
           hoursOpenTitle: "Handilin er opin",
-          weekdayLabel: "Mánadag–fríggjadag",
-          saturdayLabel: "Leygardag",
+          weekdaySaturdayLabel: "Mánadag–leygardag",
           sundayLabel: "Sunnudag",
           closedLabel: "Stongt",
           hoursNote: "Kanna fegin heimasíðuna ella uppslagið við handilin halgidagar.",
@@ -1281,8 +1332,13 @@
           helpTag: "Hevur tú spurningar?",
           helpTitle: "Spyr okkum endiliga",
           helpText: "Um tú leitar eftir nøkrum ávísum ella vilt vita meira um handilin, hjálpa vit fegin.",
-          phoneTitle: "Ring til handilin",
-          emailTitle: "Skriva til bestýraran",
+          phoneLeaderTitle: "Ring til leiðaran",
+          emailLeaderTitle: "Skriva til leiðaran",
+          phoneShopTitle: "Ring til handilin",
+          emailShopTitle: "Skriva til handilin",
+          managerLabel: "Handilsleiðari",
+          addressLabel: "Bústaður",
+          invoiceLabel: "Faktura",
           siteLinkTitle: "Til heimasíðuna hjá Á handli",
           siteLinkSmall: "Meira kunning um handilin",
 
@@ -1301,12 +1357,7 @@
           foAdviceOneTitle: "Spyr starvsfólkini",
           foAdviceOneText: "Um tú ikki finnur tað, tú leitar eftir, hjálpa vit fegin.",
           foAdviceTwoTitle: "Ring ella skriva",
-          foAdviceTwoText: "Tú kanst seta teg í samband við handilin, um tú hevur spurningar.",
-
-          footerText: "Skjótir leinkir",
-          bottomHours: "Upplatingartíðir",
-          bottomOffers: "Sí tilboð",
-          bottomWebsite: "Heimasíða"
+          foAdviceTwoText: "Tú kanst seta teg í samband við handilin, um tú hevur spurningar."
         },
 
         de: {
@@ -1338,8 +1389,7 @@
           hoursSub: "Praktische Informationen",
           practicalTag: "Praktische Infos",
           hoursOpenTitle: "Der Laden ist geöffnet",
-          weekdayLabel: "Montag–Freitag",
-          saturdayLabel: "Samstag",
+          weekdaySaturdayLabel: "Montag–Samstag",
           sundayLabel: "Sonntag",
           closedLabel: "Geschlossen",
           hoursNote: "Bitte prüfe an Feiertagen die Website oder den Aushang beim Laden.",
@@ -1359,8 +1409,13 @@
           helpTag: "Brauchst du Hilfe?",
           helpTitle: "Frag uns gerne",
           helpText: "Wenn du etwas Bestimmtes suchst oder mehr über den Laden wissen möchtest, helfen wir gerne.",
-          phoneTitle: "Den Laden anrufen",
-          emailTitle: "Der Leitung schreiben",
+          phoneLeaderTitle: "Die Leitung anrufen",
+          emailLeaderTitle: "Der Leitung schreiben",
+          phoneShopTitle: "Den Laden anrufen",
+          emailShopTitle: "Dem Laden schreiben",
+          managerLabel: "Geschäftsleitung",
+          addressLabel: "Adresse",
+          invoiceLabel: "Rechnung",
           siteLinkTitle: "Zur Website von Á handil",
           siteLinkSmall: "Weitere Informationen über den Laden",
 
@@ -1379,12 +1434,7 @@
           foAdviceOneTitle: "Frag das Personal",
           foAdviceOneText: "Wenn du nicht findest, wonach du suchst, helfen wir gerne.",
           foAdviceTwoTitle: "Anrufen oder schreiben",
-          foAdviceTwoText: "Du kannst den Laden kontaktieren, wenn du Fragen hast.",
-
-          footerText: "Schnellzugriffe",
-          bottomHours: "Öffnungszeiten",
-          bottomOffers: "Angebote",
-          bottomWebsite: "Website"
+          foAdviceTwoText: "Du kannst den Laden kontaktieren, wenn du Fragen hast."
         }
       };
 
