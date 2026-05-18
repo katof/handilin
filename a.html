@@ -10,24 +10,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
   <style>
+
     :root {
       --green: #42a52e;
       --green-dark: #206b25;
-      --green-deep: #103c19;
-      --green-soft: #ecf8e9;
-      --yellow: #ffdf1c;
-      --ink: #24292d;
-      --text: #4d5358;
-      --muted: #747a80;
+      --green-deep: #0b1710;
+      --green-black: #07110a;
+      --ink: #111614;
+      --text: #323936;
+      --muted: #6f7773;
       --paper: #ffffff;
-      --bg: #f4f7f2;
-      --line: rgba(32, 107, 37, 0.14);
-      --shadow: 0 24px 54px rgba(20, 50, 25, 0.16);
-      --shadow-button: 0 12px 24px rgba(20, 50, 25, 0.18), inset 0 -4px 0 rgba(0, 0, 0, 0.18);
-      --shadow-button-active: 0 7px 15px rgba(20, 50, 25, 0.18), inset 0 -2px 0 rgba(0, 0, 0, 0.18);
-      --radius-xl: 32px;
+      --bg: #f7f7f2;
+      --line: rgba(7, 17, 10, 0.14);
+      --line-strong: rgba(7, 17, 10, 0.32);
+      --shadow: 0 18px 0 rgba(7, 17, 10, 0.06), 0 30px 62px rgba(7, 17, 10, 0.16);
+      --shadow-hard: 0 7px 0 rgba(7, 17, 10, 0.15), 0 16px 32px rgba(7, 17, 10, 0.15);
+      --shadow-pressed: 0 3px 0 rgba(7, 17, 10, 0.18), 0 8px 16px rgba(7, 17, 10, 0.14);
+      --radius-xl: 30px;
       --radius-lg: 24px;
-      --radius-md: 18px;
+      --radius-md: 16px;
       --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
 
@@ -39,9 +40,9 @@
       font-family: "Open Sans", Arial, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 12% -6%, rgba(255, 223, 28, 0.36), transparent 26rem),
-        radial-gradient(circle at 92% 4%, rgba(66, 165, 46, 0.20), transparent 24rem),
-        linear-gradient(180deg, #fbfcf8 0%, var(--bg) 38%, #edf4eb 100%);
+        linear-gradient(90deg, rgba(7, 17, 10, 0.035) 1px, transparent 1px),
+        linear-gradient(180deg, #ffffff 0%, #f8f8f2 45%, #eeeeea 100%);
+      background-size: 32px 32px, auto;
       line-height: 1.5;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
@@ -55,34 +56,31 @@
       position: fixed; top: 10px; left: 10px; z-index: 9999;
       transform: translateY(-150%);
       border-radius: 999px; background: var(--green); color: #fff;
-      padding: 10px 14px; font-weight: 800; text-decoration: none;
+      padding: 10px 14px; font-weight: 900; text-decoration: none;
+      box-shadow: 0 5px 0 rgba(7, 17, 10, 0.30);
     }
     .skip-link:focus { transform: translateY(0); }
 
     .site-header {
       position: sticky; top: 0; z-index: 50;
-      background: rgba(255, 255, 255, 0.88);
-      border-bottom: 1px solid rgba(32, 107, 37, 0.10);
+      background: rgba(255, 255, 255, 0.94);
+      border-bottom: 2px solid rgba(7, 17, 10, 0.10);
       backdrop-filter: blur(18px);
     }
     .header-inner {
-      width: min(100%, 1060px);
+      width: min(100%, 1080px);
       margin: 0 auto;
       padding: max(10px, env(safe-area-inset-top)) 16px 12px;
       display: grid;
       gap: 12px;
       justify-items: center;
     }
-    .brand {
-      display: grid;
-      place-items: center;
-      text-decoration: none;
-    }
+    .brand { display: grid; place-items: center; text-decoration: none; }
     .brand-logo {
-      width: 70px;
-      height: 70px;
+      width: 66px;
+      height: 66px;
       object-fit: contain;
-      filter: drop-shadow(0 5px 3px rgba(0, 0, 0, 0.22));
+      filter: drop-shadow(0 5px 0 rgba(7, 17, 10, 0.16));
     }
 
     .language-tabs {
@@ -90,219 +88,276 @@
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 9px;
+      gap: 8px;
       width: min(100%, 560px);
-      padding: 8px;
-      border-radius: 999px;
-      background: rgba(237, 244, 235, 0.94);
-      border: 1px solid rgba(32, 107, 37, 0.12);
-      box-shadow: inset 0 2px 8px rgba(20, 50, 25, 0.06);
+      padding: 0;
+      background: transparent;
     }
     .language-tabs button {
-      min-height: 42px;
-      min-width: 72px;
-      border: 0;
-      border-radius: 999px;
+      min-height: 40px;
+      min-width: 70px;
+      border: 2px solid rgba(7, 17, 10, 0.92);
+      border-radius: 12px;
       background: #fff;
-      color: #56605a;
-      padding: 0 18px;
+      color: var(--green-black);
+      padding: 0 17px;
       font-weight: 900;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
       cursor: pointer;
-      box-shadow: 0 8px 18px rgba(20, 50, 25, 0.10), inset 0 -3px 0 rgba(0, 0, 0, 0.12);
-      transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease, color 150ms ease;
+      box-shadow: 0 5px 0 rgba(7, 17, 10, 0.18);
+      transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease, color 140ms ease;
       user-select: none;
     }
     .language-tabs button:hover { transform: translateY(-1px); }
     .language-tabs button:active {
-      transform: translateY(2px);
-      box-shadow: 0 5px 12px rgba(20, 50, 25, 0.12), inset 0 -1px 0 rgba(0, 0, 0, 0.18);
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 rgba(7, 17, 10, 0.22);
     }
     .language-tabs button[aria-selected="true"] {
       background: var(--green);
       color: #fff;
-      box-shadow: var(--shadow-button);
+      border-color: var(--green-black);
+      box-shadow: 0 6px 0 rgba(7, 17, 10, 0.34);
     }
 
-    .page { width: min(100%, 1060px); margin: 0 auto; padding: 24px 16px 92px; }
+    .page { width: min(100%, 1080px); margin: 0 auto; padding: 24px 16px 92px; }
+
     .hero {
       position: relative;
       overflow: hidden;
+      min-height: clamp(430px, 62vw, 640px);
       display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr);
-      gap: clamp(22px, 5vw, 54px);
-      align-items: center;
-      margin-top: 12px;
-      padding: clamp(18px, 4vw, 34px);
+      align-items: end;
+      margin-top: 10px;
       border-radius: var(--radius-xl);
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(255, 255, 255, 0.72);
+      background: var(--green-black);
+      border: 2px solid rgba(7, 17, 10, 0.92);
       box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(180deg, rgba(7, 17, 10, 0.16) 0%, rgba(7, 17, 10, 0.30) 42%, rgba(7, 17, 10, 0.88) 100%),
+        linear-gradient(90deg, rgba(66, 165, 46, 0.36) 0%, transparent 44%);
+      pointer-events: none;
     }
     .hero::after {
       content: "Á";
       position: absolute;
-      right: -18px;
-      bottom: -68px;
-      color: rgba(66, 165, 46, 0.08);
-      font-size: clamp(10rem, 25vw, 19rem);
+      right: -20px;
+      top: -62px;
+      z-index: 2;
+      color: rgba(255, 255, 255, 0.14);
+      font-size: clamp(10rem, 27vw, 22rem);
       font-weight: 900;
       line-height: 1;
       pointer-events: none;
     }
-    .hero-visual {
+    .hero-visual { position: absolute; inset: 0; z-index: 0; min-height: 100%; overflow: hidden; border-radius: 0; background: var(--green-black); }
+    .hero-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center; transform: scale(1.02); }
+    .hero-copy {
       position: relative;
-      min-height: 340px;
-      overflow: hidden;
-      border-radius: 26px;
-      background: #fff;
-      box-shadow: 0 20px 42px rgba(24, 58, 29, 0.18), inset 0 -5px 0 rgba(0, 0, 0, 0.08);
+      z-index: 3;
+      display: grid;
+      gap: 14px;
+      max-width: 760px;
+      padding: clamp(24px, 6vw, 58px);
+      color: #fff;
     }
-    .hero-visual img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-    .hero-copy { position: relative; z-index: 1; display: grid; gap: 14px; }
     .eyebrow, .tag {
       display: inline-flex;
       width: fit-content;
       align-items: center;
       border-radius: 999px;
-      background: var(--green-soft);
-      color: var(--green-dark);
+      background: var(--green);
+      color: #fff;
+      border: 2px solid rgba(7, 17, 10, 0.80);
       padding: 8px 12px;
       font-size: 0.82rem;
       font-weight: 900;
+      box-shadow: 0 5px 0 rgba(7, 17, 10, 0.22);
     }
     .hero h1 {
       margin: 0;
-      color: var(--green);
-      font-family: "Caveat", "Open Sans", sans-serif;
-      font-size: clamp(3.1rem, 9vw, 6.7rem);
-      line-height: 0.84;
-      letter-spacing: -0.04em;
-      text-shadow: 0 4px 0 rgba(32, 107, 37, 0.13);
+      color: #fff;
+      font-family: "Caveat", "Open Sans", Arial, sans-serif;
+      font-size: clamp(4.2rem, 13vw, 9.4rem);
+      line-height: 0.82;
+      letter-spacing: -0.045em;
+      text-transform: none;
+      text-shadow: 0 5px 0 rgba(7, 17, 10, 0.48);
     }
-    .hero p { margin: 0; max-width: 42rem; font-size: clamp(1rem, 2vw, 1.18rem); font-weight: 700; }
+    .hero p {
+      margin: 0;
+      max-width: 48rem;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 800;
+    }
 
     .quick-actions {
+      position: relative;
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-      margin: 18px 0 10px;
+      gap: 12px;
+      margin: 26px 0 10px;
+      padding: 48px 14px 14px;
+      border: 2px solid rgba(7, 17, 10, 0.92);
+      border-radius: var(--radius-lg);
+      background: #fff;
+      box-shadow: var(--shadow-hard);
     }
+    .nav-head {
+      position: absolute;
+      top: 12px;
+      left: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green-black);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .nav-head::before { content: ""; width: 9px; height: 9px; background: var(--green); border-radius: 999px; box-shadow: 0 0 0 3px rgba(66,165,46,0.18); }
     .quick-action, .link-button, .contact-link {
       display: grid;
       align-content: center;
-      min-height: 78px;
-      border: 0;
-      border-radius: 22px;
+      min-height: 84px;
+      border: 2px solid rgba(7, 17, 10, 0.92);
+      border-radius: 16px;
       background: #fff;
       color: var(--ink);
-      padding: 15px 17px;
+      padding: 16px 18px;
       text-decoration: none;
-      box-shadow: 0 12px 25px rgba(20, 50, 25, 0.13), inset 0 -4px 0 rgba(0, 0, 0, 0.11);
-      transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease, color 150ms ease;
+      box-shadow: 0 7px 0 rgba(7, 17, 10, 0.18), 0 12px 22px rgba(7, 17, 10, 0.10);
+      transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease, color 140ms ease;
     }
-    .quick-action strong { color: var(--green-dark); font-size: 1rem; line-height: 1.15; }
-    .quick-action span { margin-top: 3px; color: var(--muted); font-size: 0.82rem; font-weight: 800; }
-    .quick-action:hover, .link-button:hover, .contact-link:hover { transform: translateY(-2px); }
-    .quick-action:active, .link-button:active, .contact-link:active { transform: translateY(2px); box-shadow: var(--shadow-button-active); }
-    .quick-action[href*="maps"], .link-button.map-link {
+    .quick-action { position: relative; padding-top: 34px; }
+    .quick-action::before {
+      content: "NAV";
+      position: absolute;
+      top: 10px;
+      left: 16px;
+      color: var(--green);
+      font-size: 0.62rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+    }
+    .quick-action strong { color: var(--green-black); font-size: 1rem; line-height: 1.15; }
+    .quick-action span { margin-top: 4px; color: var(--muted); font-size: 0.82rem; font-weight: 800; }
+    .quick-action:hover, .link-button:hover, .contact-link:hover { transform: translateY(-2px); box-shadow: 0 9px 0 rgba(7, 17, 10, 0.20), 0 16px 26px rgba(7, 17, 10, 0.14); }
+    .quick-action:active, .link-button:active, .contact-link:active { transform: translateY(4px); box-shadow: var(--shadow-pressed); }
+    .quick-action.map-nav, .link-button.map-link {
       background: var(--green);
       color: #fff;
-      box-shadow: var(--shadow-button);
+      border-color: var(--green-black);
+      box-shadow: 0 8px 0 rgba(7, 17, 10, 0.36), 0 16px 30px rgba(66, 165, 46, 0.24);
     }
-    .quick-action[href*="maps"] strong, .quick-action[href*="maps"] span, .link-button.map-link small { color: #fff; }
+    .quick-action.map-nav::before { color: rgba(255,255,255,0.82); }
+    .quick-action.map-nav strong, .quick-action.map-nav span, .link-button.map-link small { color: #fff; }
 
-    .section { margin-top: 30px; scroll-margin-top: 170px; }
+    .section { margin-top: 34px; scroll-margin-top: 172px; }
     .section-head { display: grid; gap: 6px; margin-bottom: 12px; padding: 0 4px; }
     .section-head h2, .card h2 {
       margin: 0;
       color: var(--green);
-      font-size: clamp(1.55rem, 4.5vw, 2.55rem);
-      line-height: 1.04;
-      letter-spacing: -0.04em;
-      font-weight: 900;
+      font-family: "Caveat", "Open Sans", Arial, sans-serif;
+      font-size: clamp(2.35rem, 6vw, 4.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.035em;
+      font-weight: 700;
+      text-transform: none;
     }
     .section-head p { margin: 0; color: var(--muted); font-weight: 800; }
     .card {
       overflow: hidden;
       border-radius: var(--radius-lg);
-      background: rgba(255, 255, 255, 0.94);
-      border: 1px solid rgba(255, 255, 255, 0.74);
-      box-shadow: 0 18px 42px rgba(20, 50, 25, 0.12);
+      background: #fff;
+      border: 2px solid rgba(7, 17, 10, 0.92);
+      box-shadow: 0 12px 0 rgba(7, 17, 10, 0.11), 0 22px 48px rgba(7, 17, 10, 0.13);
     }
     .card-media img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
     .card-body { display: grid; gap: 12px; padding: clamp(18px, 4vw, 26px); }
-    .card h3 { margin: 0; color: var(--green-dark); font-size: 1.2rem; line-height: 1.2; }
-    .card p { margin: 0; color: var(--text); }
+    .card h3 { margin: 0; color: var(--green-black); font-size: 1.2rem; line-height: 1.2; }
+    .card p { margin: 0; color: var(--text); font-weight: 650; }
 
-    .map-card {
-      background:
-        radial-gradient(circle at 100% 0%, rgba(255, 223, 28, 0.35), transparent 18rem),
-        linear-gradient(135deg, #ffffff 0%, #eff8ed 100%);
-    }
+    .map-card { background: #fff; }
     .map-body { grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 18px; }
-    .map-link { min-width: min(100%, 300px); grid-template-columns: 1fr auto; align-items: center; }
-    .link-button { grid-template-columns: 1fr auto; gap: 16px; min-height: 70px; }
+    .map-link { min-width: min(100%, 310px); grid-template-columns: 1fr auto; align-items: center; }
+    .link-button { grid-template-columns: 1fr auto; gap: 16px; min-height: 72px; }
     .link-button strong, .link-button small { display: block; }
     .link-button strong { color: inherit; font-size: 1rem; }
     .link-button small { margin-top: 3px; color: rgba(255,255,255,0.86); font-weight: 800; }
+    .link-button:not(.map-link) small { color: var(--muted); }
     .arrow {
       display: grid; place-items: center;
-      width: 38px; height: 38px;
-      border-radius: 999px; background: rgba(255,255,255,0.96); color: var(--green);
+      width: 40px; height: 40px;
+      border-radius: 12px; background: #fff; color: var(--green-black);
+      border: 2px solid rgba(7, 17, 10, 0.92);
       font-weight: 900;
+      box-shadow: 0 4px 0 rgba(7, 17, 10, 0.22);
     }
 
     .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: start; }
     .hours-list, .contact-grid, .info-list, .phrase-grid, .fo-advice { display: grid; gap: 10px; }
     .hours-row, .info-row, .phrase-item {
-      border-radius: 18px;
-      background: var(--green-soft);
-      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      border: 2px solid rgba(7, 17, 10, 0.14);
       padding: 12px 14px;
     }
     .hours-row { display: flex; justify-content: space-between; align-items: center; gap: 14px; }
-    .hours-row strong { color: var(--green-dark); }
+    .hours-row strong { color: var(--green-black); }
     .hours-row span { font-weight: 900; }
     .note { color: var(--muted); font-size: 0.88rem; }
     .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .contact-link { min-height: 68px; background: var(--green-soft); }
-    .contact-link strong { color: var(--green-dark); }
+    .contact-link { min-height: 70px; background: #fff; }
+    .contact-link strong { color: var(--green-black); }
     .contact-link span { color: var(--muted); font-size: 0.86rem; font-weight: 800; }
-    .info-row strong { color: var(--green-dark); font-size: 0.84rem; }
+    .info-row { display: grid; gap: 5px; }
+    .info-row strong { color: var(--green-black); font-size: 0.84rem; }
     .info-row span, .info-row a { color: var(--text); font-weight: 800; text-decoration: none; }
 
     .surprise-card {
       position: relative;
       overflow: hidden;
       border-radius: var(--radius-lg);
-      background: linear-gradient(135deg, #215c27 0%, #0f3518 100%);
+      background: linear-gradient(135deg, #102015 0%, #061009 100%);
       color: #fff;
+      border: 2px solid rgba(7, 17, 10, 0.92);
       padding: clamp(20px, 5vw, 32px);
-      box-shadow: 0 24px 54px rgba(15, 53, 24, 0.25);
+      box-shadow: 0 12px 0 rgba(7, 17, 10, 0.20), 0 24px 54px rgba(7, 17, 10, 0.28);
     }
     .surprise-card::after {
       content: "Á";
       position: absolute;
       right: -14px;
       bottom: -58px;
-      color: rgba(255, 255, 255, 0.08);
+      color: rgba(66, 165, 46, 0.24);
       font-size: 13rem;
       font-weight: 900;
       line-height: 1;
     }
-    .surprise-card .eyebrow { background: rgba(255,255,255,0.14); color: #fff; }
+    .surprise-card .eyebrow { background: var(--green); color: #fff; }
     .surprise-card h2 {
       position: relative; z-index: 1;
       margin: 12px 0 6px;
-      color: #72d857;
+      color: #fff;
       font-size: clamp(1.9rem, 6vw, 3.4rem);
       line-height: 0.96;
       font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.05em;
     }
     .surprise-card > p { position: relative; z-index: 1; color: rgba(255,255,255,0.88); font-weight: 800; }
     .phrase-grid, .fo-advice { position: relative; z-index: 1; margin-top: 16px; grid-template-columns: repeat(2, 1fr); }
-    .phrase-item { background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.18); }
+    .phrase-item { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.24); }
     .phrase-item strong { display: block; color: #fff; font-size: 1.08rem; }
     .phrase-item span { display: block; margin-top: 3px; color: rgba(255,255,255,0.78); font-weight: 800; }
     .fo-advice { display: none; }
@@ -312,8 +367,8 @@
     .page-footer {
       position: fixed; left: 0; right: 0; bottom: 0; z-index: 45;
       padding: 9px 14px calc(9px + var(--safe-bottom));
-      background: rgba(255, 255, 255, 0.88);
-      border-top: 1px solid rgba(32, 107, 37, 0.10);
+      background: rgba(255, 255, 255, 0.94);
+      border-top: 2px solid rgba(7, 17, 10, 0.10);
       backdrop-filter: blur(18px);
     }
     .page-footer-inner { width: min(100%, 430px); margin: 0 auto; }
@@ -321,31 +376,36 @@
     .footer-icon-link {
       display: grid; place-items: center;
       min-height: 50px;
-      border-radius: 999px;
+      border-radius: 14px;
       background: #fff;
-      color: var(--green);
+      color: var(--green-black);
+      border: 2px solid rgba(7, 17, 10, 0.92);
       text-decoration: none;
-      box-shadow: 0 9px 18px rgba(20, 50, 25, 0.12), inset 0 -3px 0 rgba(0,0,0,0.10);
+      box-shadow: 0 5px 0 rgba(7,17,10,0.16);
     }
     .footer-icon-link svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-    :focus-visible { outline: 3px solid rgba(66, 165, 46, 0.42); outline-offset: 3px; }
+    :focus-visible { outline: 4px solid rgba(66, 165, 46, 0.48); outline-offset: 4px; }
 
     @media (max-width: 850px) {
-      .hero, .split-grid, .map-body { grid-template-columns: 1fr; }
-      .hero-visual { min-height: 280px; }
+      .split-grid, .map-body { grid-template-columns: 1fr; }
+      .hero { min-height: 520px; }
       .quick-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .nav-head { grid-column: 1 / -1; }
       .map-link { min-width: 0; }
     }
     @media (max-width: 560px) {
       .brand-logo { width: 58px; height: 58px; }
-      .language-tabs { gap: 6px; padding: 6px; border-radius: 26px; }
-      .language-tabs button { min-width: 0; flex: 1 1 28%; min-height: 39px; padding: 0 10px; font-size: 0.82rem; }
+      .language-tabs { gap: 6px; }
+      .language-tabs button { min-width: 0; flex: 1 1 28%; min-height: 38px; padding: 0 10px; font-size: 0.82rem; border-radius: 10px; }
       .page { padding: 14px 12px 88px; }
-      .hero { border-radius: 24px; padding: 14px; }
-      .hero-visual { min-height: 220px; border-radius: 20px; }
-      .quick-actions, .contact-grid, .phrase-grid, .fo-advice { grid-template-columns: 1fr; }
+      .hero { border-radius: 22px; min-height: 460px; }
+      .hero-copy { padding: 22px; }
+      .hero h1 { font-size: clamp(3.1rem, 19vw, 5.4rem); }
+      .quick-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .contact-grid, .phrase-grid, .fo-advice { grid-template-columns: 1fr; }
     }
+
   </style>
 </head>
 <body>
@@ -379,9 +439,10 @@
     </section>
 
     <nav class="quick-actions" aria-label="Quick links">
+      <div class="nav-head" data-i18n="navTitle">Navigation</div>
       <a class="quick-action" href="#hours"><strong data-i18n="quickHoursTitle">Opening hours</strong><span data-i18n="quickHoursText">See when the shop is open</span></a>
       <a class="quick-action" href="#offers"><strong data-i18n="quickOffersTitle">Offers</strong><span data-i18n="quickOffersText">Open this week’s leaflet</span></a>
-      <a class="quick-action" href="https://maps.app.goo.gl/C5YoY3gFdtmRkMVv5" target="_blank" rel="noopener noreferrer" aria-label="Find the shop - Shop on Google Maps"><strong data-i18n="quickLookTitle">Find the shop</strong><span data-i18n="quickLookText">Shop on Google Maps</span></a>
+      <a class="quick-action map-nav" href="#google-map"><strong data-i18n="quickLookTitle">Find the shop</strong><span data-i18n="quickLookText">Shop on Google Maps</span></a>
       <a class="quick-action" href="#help"><strong data-i18n="quickHelpTitle">Help</strong><span data-i18n="quickHelpText">Contact and website</span></a>
     </nav>
 
@@ -415,9 +476,9 @@
       <section class="section" aria-labelledby="welcome-title"><div class="section-head"><h2 id="welcome-title" data-i18n="welcomeTitle">A small first glimpse</h2><p data-i18n="welcomeText">Á handil is the local shop in Vestmanna. Here you can shop, ask questions, and get help if you are unsure about something.</p></div><article class="card"><div class="card-body"><div class="tag" data-i18n="localTag">Local shop</div><h3 data-i18n="localTitle">Part of everyday village life</h3><p data-i18n="localText">Á handil is not only a place to shop. It is also a local shop where people often stop, greet each other, and have a short chat.</p></div></article></section>
     </div>
 
-    <section class="section" id="offers" aria-labelledby="offers-title"><article class="card"><div class="card-body"><div class="tag" data-i18n="offersTag">Offers</div><h2 id="offers-title" data-i18n="offersTitle">See this week’s offers</h2><p data-i18n="offersText">You can also open the shop’s offer leaflet. The leaflet is in Faroese.</p><a class="link-button" href="https://ahandil.fo/wp-content/uploads/2026/05/A26_V20_Netblad.pdf" target="_blank" rel="noopener noreferrer"><span><strong data-i18n="offersLinkTitle">Open offer leaflet</strong><small data-i18n="offersLinkSmall">PDF in Faroese</small></span><span class="arrow" aria-hidden="true">↗</span></a></div></article></section>
+    <section class="section" id="offers" aria-labelledby="offers-title"><article class="card"><div class="card-body"><div class="tag" data-i18n="offersTag">Offers</div><h2 id="offers-title" data-i18n="offersTitle">See this week’s offers</h2><p data-i18n="offersText">You can read this week’s Faroese tilboðsblað on the Á handil website.</p><a class="link-button" href="https://ahandil.fo/" target="_blank" rel="noopener noreferrer"><span><strong data-i18n="offersLinkTitle">Go to Á handil website</strong><small data-i18n="offersLinkSmall">Read this week’s tilboðsblað in Faroese</small></span><span class="arrow" aria-hidden="true">↗</span></a></div></article></section>
 
-    <section class="section" id="help" aria-labelledby="help-title"><article class="card"><div class="card-body"><div class="tag" data-i18n="helpTag">Need help?</div><h2 id="help-title" data-i18n="helpTitle">Feel free to ask</h2><p data-i18n="helpText">If you are looking for something specific or want to know more about the shop, we are happy to help.</p><div class="contact-grid"><a class="contact-link" href="tel:+298253311"><strong data-i18n="phoneLeaderTitle">Call the manager</strong><span>25 33 11</span></a><a class="contact-link" href="mailto:fbn@ahandil.fo"><strong data-i18n="emailLeaderTitle">Email the manager</strong><span>fbn@ahandil.fo</span></a><a class="contact-link" href="tel:+298442005"><strong data-i18n="phoneShopTitle">Call the shop</strong><span>44 20 05</span></a><a class="contact-link" href="mailto:avestmanna@haraldsen.fo"><strong data-i18n="emailShopTitle">Email the shop</strong><span>avestmanna@haraldsen.fo</span></a></div><div class="info-list" aria-label="Contact information"><div class="info-row"><strong data-i18n="managerLabel">Shop manager</strong><span>Fríðvør B. Nielsen</span></div><div class="info-row"><strong data-i18n="addressLabel">Address</strong><span>Fjarðarvegur 12, 350 Vestmanna</span></div><div class="info-row"><strong data-i18n="invoiceLabel">Invoice</strong><a href="mailto:faktura.avestmanna@haraldsen.fo">faktura.avestmanna@haraldsen.fo</a></div><div class="info-row"><strong>V-tal</strong><span>605 174</span></div></div><a class="link-button" href="https://ahandil.fo/" target="_blank" rel="noopener noreferrer"><span><strong data-i18n="siteLinkTitle">Go to Á handil website</strong><small data-i18n="siteLinkSmall">More information about the shop</small></span><span class="arrow" aria-hidden="true">↗</span></a></div></article></section>
+    <section class="section" id="help" aria-labelledby="help-title"><article class="card"><div class="card-body"><div class="tag" data-i18n="helpTag">Need help?</div><h2 id="help-title" data-i18n="helpTitle">Feel free to ask</h2><p data-i18n="helpText">If you are looking for something specific or want to know more about the shop, we are happy to help.</p><div class="contact-grid"><a class="contact-link" href="tel:+298253311"><strong data-i18n="phoneLeaderTitle">Call the manager</strong><span>25 33 11</span></a><a class="contact-link" href="mailto:fbn@ahandil.fo"><strong data-i18n="emailLeaderTitle">Email the manager</strong><span>fbn@ahandil.fo</span></a><a class="contact-link" href="tel:+298442005"><strong data-i18n="phoneShopTitle">Call the shop</strong><span>44 20 05</span></a><a class="contact-link" href="mailto:avestmanna@haraldsen.fo"><strong data-i18n="emailShopTitle">Email the shop</strong><span>avestmanna@haraldsen.fo</span></a></div><div class="info-list" aria-label="Contact information"><div class="info-row"><strong data-i18n="managerLabel">Shop manager</strong><span>Fríðvør B. Nielsen</span></div><div class="info-row"><strong data-i18n="addressLabel">Address</strong><span>Fjarðarvegur 12, 350 Vestmanna</span></div></div><a class="link-button" href="https://ahandil.fo/" target="_blank" rel="noopener noreferrer"><span><strong data-i18n="siteLinkTitle">Go to Á handil website</strong><small data-i18n="siteLinkSmall">More information about the shop</small></span><span class="arrow" aria-hidden="true">↗</span></a></div></article></section>
 
     <section class="section" id="phrases" aria-labelledby="phrases-title"><article class="surprise-card"><div class="eyebrow" data-i18n="phrasesEyebrow">💚 A little help in the shop</div><h2 id="phrases-title" data-i18n="phrasesTitle">Say it in Faroese</h2><p data-i18n="phrasesIntro">A tiny phrase helper for new customers, so it feels easier to ask for help.</p><div class="phrase-grid" aria-label="Useful Faroese phrases"><div class="phrase-item"><strong data-i18n="phraseOneFo">Góðan dag</strong><span data-i18n="phraseOneHelp">Hello / good day</span></div><div class="phrase-item"><strong data-i18n="phraseTwoFo">Hvar finni eg ...?</strong><span data-i18n="phraseTwoHelp">Where can I find ...?</span></div><div class="phrase-item"><strong data-i18n="phraseThreeFo">Kann eg fáa hjálp?</strong><span data-i18n="phraseThreeHelp">Can I get help?</span></div><div class="phrase-item"><strong data-i18n="phraseFourFo">Takk fyri</strong><span data-i18n="phraseFourHelp">Thank you</span></div></div><div class="fo-advice" aria-label="Góð ráð til kundar"><div class="phrase-item"><strong data-i18n="foAdviceOneTitle">Ask the staff</strong><span data-i18n="foAdviceOneText">If you cannot find what you are looking for, we are happy to help.</span></div><div class="phrase-item"><strong data-i18n="foAdviceTwoTitle">Call or email</strong><span data-i18n="foAdviceTwoText">You can contact the shop if you have questions.</span></div></div></article></section>
   </main>
@@ -448,6 +509,7 @@
                 "heroEyebrow": "📍 Velkommen til Á handil",
                 "heroTitle": "Ny her?",
                 "heroText": "Her finder du åbningstider, et lille indblik i Á handil og lidt hjælp, hvis du er i tvivl om noget.",
+                "navTitle": "Navigation",
                 "quickActionsAria": "Hurtige genveje",
                 "quickHoursTitle": "Åbningstider",
                 "quickHoursText": "Se hvornår der er åbent",
@@ -479,9 +541,9 @@
                 "localText": "Á handil er ikke kun et sted for indkøb. Det er også en lokal butik, hvor folk ofte stopper op, hilser og får en lille snak.",
                 "offersTag": "Tilbud",
                 "offersTitle": "Se ugens tilbud",
-                "offersText": "Du kan også åbne butikkens tilbudsblad. Tilbudsbladet er på færøsk.",
-                "offersLinkTitle": "Åbn tilbudsblad",
-                "offersLinkSmall": "PDF på færøsk",
+                "offersText": "Du kan læse ugens færøske tilboðsblað på Á handils hjemmeside.",
+                "offersLinkTitle": "Gå til Á handils hjemmeside",
+                "offersLinkSmall": "Læs ugens tilboðsblað på færøsk",
                 "helpTag": "Har du brug for hjælp?",
                 "helpTitle": "Spørg os gerne",
                 "helpText": "Hvis du leder efter noget bestemt eller vil vide mere om butikken, hjælper vi gerne.",
@@ -546,6 +608,7 @@
                 "heroEyebrow": "📍 Welcome to Á handil",
                 "heroTitle": "New here?",
                 "heroText": "Here you can find opening hours, a short introduction to Á handil, and a little help if you are unsure about anything.",
+                "navTitle": "Navigation",
                 "quickActionsAria": "Quick links",
                 "quickHoursTitle": "Opening hours",
                 "quickHoursText": "See when the shop is open",
@@ -577,9 +640,9 @@
                 "localText": "Á handil is not only a place to shop. It is also a local shop where people often stop, greet each other, and have a short chat.",
                 "offersTag": "Offers",
                 "offersTitle": "See this week’s offers",
-                "offersText": "You can also open the shop’s offer leaflet. The leaflet is in Faroese.",
-                "offersLinkTitle": "Open offer leaflet",
-                "offersLinkSmall": "PDF in Faroese",
+                "offersText": "You can read this week’s Faroese tilboðsblað on the Á handil website.",
+                "offersLinkTitle": "Go to Á handil website",
+                "offersLinkSmall": "Read this week’s tilboðsblað in Faroese",
                 "helpTag": "Need help?",
                 "helpTitle": "Feel free to ask",
                 "helpText": "If you are looking for something specific or want to know more about the shop, we are happy to help.",
@@ -644,6 +707,7 @@
                 "heroEyebrow": "📍 Bienvenue chez Á handil",
                 "heroTitle": "Nouveau ici ?",
                 "heroText": "Vous trouverez ici les horaires, une petite présentation de Á handil et un peu d’aide si vous avez un doute.",
+                "navTitle": "Navigation",
                 "quickActionsAria": "Liens rapides",
                 "quickHoursTitle": "Horaires",
                 "quickHoursText": "Voir les heures d’ouverture",
@@ -675,9 +739,9 @@
                 "localText": "Á handil n’est pas seulement un lieu d’achat. C’est aussi un magasin local où les gens s’arrêtent souvent, se saluent et échangent quelques mots.",
                 "offersTag": "Offres",
                 "offersTitle": "Voir les offres de la semaine",
-                "offersText": "Vous pouvez aussi ouvrir le prospectus des offres du magasin. Le prospectus est en féroïen.",
-                "offersLinkTitle": "Ouvrir le prospectus",
-                "offersLinkSmall": "PDF en féroïen",
+                "offersText": "Vous pouvez lire le tilboðsblað féroïen de la semaine sur le site web de Á handil.",
+                "offersLinkTitle": "Aller au site web de Á handil",
+                "offersLinkSmall": "Lire le tilboðsblað de la semaine en féroïen",
                 "helpTag": "Besoin d’aide ?",
                 "helpTitle": "N’hésitez pas à demander",
                 "helpText": "Si vous cherchez quelque chose de précis ou si vous voulez en savoir plus sur le magasin, nous serons heureux de vous aider.",
@@ -742,6 +806,7 @@
                 "heroEyebrow": "📍 Vælkomin í Á handil",
                 "heroTitle": "Hevur tú verið her fyrr?",
                 "heroText": "Her finnur tú upplatingartíðir, eitt lítið innlit í Á handil og samband, um tú hevur spurningar.",
+                "navTitle": "Snarvegir",
                 "quickActionsAria": "Skjótir leinkir",
                 "quickHoursTitle": "Upplatingartíðir",
                 "quickHoursText": "Sí nær handilin er opin",
@@ -773,9 +838,9 @@
                 "localText": "Á handil er ikki bara eitt stað at keypa. Tað er eisini ein lokalur handil, har fólk ofta steðga, heilsa og fáa sær eina lítla samrøðu.",
                 "offersTag": "Tilboð",
                 "offersTitle": "Sí vikunnar tilboð",
-                "offersText": "Tú kanst eisini lata upp tilboðsblaðið hjá handlinum. Tilboðsblaðið er á føroyskum.",
-                "offersLinkTitle": "Lat tilboðsblaðið upp",
-                "offersLinkSmall": "PDF á føroyskum",
+                "offersText": "Tú kanst lesa vikunnar tilboðsblað á føroyskum á heimasíðuni hjá Á handli.",
+                "offersLinkTitle": "Far til heimasíðuna hjá Á handli",
+                "offersLinkSmall": "Les vikunnar tilboðsblað á føroyskum",
                 "helpTag": "Hevur tú spurningar?",
                 "helpTitle": "Spyr okkum endiliga",
                 "helpText": "Um tú leitar eftir nøkrum ávísum ella vilt vita meira um handilin, hjálpa vit fegin.",
@@ -840,6 +905,7 @@
                 "heroEyebrow": "📍 Willkommen bei Á handil",
                 "heroTitle": "Neu hier?",
                 "heroText": "Hier findest du Öffnungszeiten, einen kurzen Einblick in Á handil und Hilfe, falls du unsicher bist.",
+                "navTitle": "Navigation",
                 "quickActionsAria": "Schnellzugriffe",
                 "quickHoursTitle": "Öffnungszeiten",
                 "quickHoursText": "Sieh, wann geöffnet ist",
@@ -871,9 +937,9 @@
                 "localText": "Á handil ist nicht nur ein Ort zum Einkaufen. Es ist auch ein lokaler Laden, wo Menschen oft kurz stehen bleiben, einander grüßen und ein paar Worte wechseln.",
                 "offersTag": "Angebote",
                 "offersTitle": "Angebote der Woche ansehen",
-                "offersText": "Du kannst auch das Angebotsblatt des Ladens öffnen. Das Angebotsblatt ist auf Färöisch.",
-                "offersLinkTitle": "Angebotsblatt öffnen",
-                "offersLinkSmall": "PDF auf Färöisch",
+                "offersText": "Du kannst das färöische tilboðsblað der Woche auf der Website von Á handil lesen.",
+                "offersLinkTitle": "Zur Website von Á handil",
+                "offersLinkSmall": "Das tilboðsblað der Woche auf Färöisch lesen",
                 "helpTag": "Brauchst du Hilfe?",
                 "helpTitle": "Frag uns gerne",
                 "helpText": "Wenn du etwas Bestimmtes suchst oder mehr über den Laden wissen möchtest, helfen wir gerne.",
